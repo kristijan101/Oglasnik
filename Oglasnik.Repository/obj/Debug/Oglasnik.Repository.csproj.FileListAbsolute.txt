@@ -1,0 +1,4 @@
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Repository.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Repository.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\obj\Debug\Oglasnik.Repository.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\obj\Debug\Oglasnik.Repository.pdb

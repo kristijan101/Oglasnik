@@ -1,0 +1,5 @@
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Model\bin\Debug\Oglasnik.Model.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Model\bin\Debug\Oglasnik.Model.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Model\obj\Debug\Oglasnik.Model.csprojResolveAssemblyReference.cache
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Model\obj\Debug\Oglasnik.Model.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Model\obj\Debug\Oglasnik.Model.pdb

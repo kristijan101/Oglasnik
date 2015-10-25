@@ -1,0 +1,14 @@
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\Oglasnik.DAL.dll.config
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\Oglasnik.DAL.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\Oglasnik.DAL.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\obj\Debug\Oglasnik.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\obj\Debug\Oglasnik.DAL.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\obj\Debug\Oglasnik.DAL.pdb
