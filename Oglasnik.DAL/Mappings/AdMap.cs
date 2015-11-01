@@ -17,13 +17,11 @@ namespace Oglasnik.DAL.Mappings
 
             Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(p => p.Title).IsRequired().HasMaxLength(50);
+            Property(p => p.Description).IsRequired();
+            Property(p => p.PostDate).IsRequired();
 
             HasRequired(p => p.Category).WithMany(p => p.Ads).HasForeignKey(p => p.CategoryID); // 1 - *
             HasRequired(p => p.User).WithMany(p => p.Ads).HasForeignKey(p => p.UserID);     // 1 - *
-            HasMany(p => p.Properties).WithMany(p => p.Ads)
-                                            .Map(t => t.ToTable("AdProperty")
-                                            .MapLeftKey("AdId")
-                                            .MapRightKey("PropertyId"));        // * - *
             
             ToTable("Ads");           
         }

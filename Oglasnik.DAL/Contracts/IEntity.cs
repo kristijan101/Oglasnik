@@ -8,6 +8,6 @@ namespace Oglasnik.DAL.Contracts
 {
     public interface IEntity
     {
-        int Id { get; set; }
+        Guid Id { get; set; }
     }
 }

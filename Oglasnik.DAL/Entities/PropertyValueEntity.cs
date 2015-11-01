@@ -8,7 +8,7 @@ namespace Oglasnik.DAL.Entities
 {
     public class PropertyValueEntity : Contracts.IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Value { get; set; }
         public int PropertyTypeId { get; set; }
 

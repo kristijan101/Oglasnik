@@ -8,9 +8,10 @@ namespace Oglasnik.DAL.Entities
 {
     public class CategoryEntity : Contracts.IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
 
+        public virtual ICollection<PropertyTypeEntity> PropertyTypes { get; set; }
         public virtual ICollection<AdEntity> Ads { get; set; }
         
     }

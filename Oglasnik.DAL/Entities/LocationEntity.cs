@@ -8,9 +8,9 @@ namespace Oglasnik.DAL.Entities
 {
     public class LocationEntity : Contracts.IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public int CountyID { get; set; }
+        public Guid CountyID { get; set; }
 
         public virtual CountyEntity County { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Oglasnik.DAL.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Oglasnik.DAL.Entities;
 using Oglasnik.DAL.Mappings;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Oglasnik.DAL
 {
-    public class OglasnikContext : DbContext, Contracts.IOglasnikContext
+    public class OglasnikContext : IdentityDbContext<UserEntity>, Contracts.IOglasnikContext
     {
         public OglasnikContext() : base("OglasnikDb")
         {
@@ -20,7 +21,6 @@ namespace Oglasnik.DAL
         public DbSet<CountyEntity> Counties { get; set; }
         public DbSet<LocationEntity> Locations { get; set; }
         public DbSet<PropertyTypeEntity> Properties { get; set; }
-        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
