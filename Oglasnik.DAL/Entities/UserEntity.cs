@@ -28,7 +28,7 @@ namespace Oglasnik.DAL.Entities
                 
             }
         }
-
+ 
         public virtual ICollection<AdEntity> Ads { get; set; }
     }
 }

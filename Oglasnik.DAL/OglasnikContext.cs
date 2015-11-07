@@ -20,7 +20,18 @@ namespace Oglasnik.DAL
         public DbSet<CategoryEntity> Categories { get; set; }
         public DbSet<CountyEntity> Counties { get; set; }
         public DbSet<LocationEntity> Locations { get; set; }
-        public DbSet<PropertyTypeEntity> Properties { get; set; }
+        public DbSet<PropertyTypeEntity> PropertyTypes { get; set; }
+        public DbSet<PropertyValueEntity> PropertyValues { get; set; }
+
+        public override DbSet<TEntity> Set<TEntity>()
+        {
+            return base.Set<TEntity>();
+        }
+
+        public override async Task<int> SaveChangesAsync()
+        {
+            return await base.SaveChangesAsync();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

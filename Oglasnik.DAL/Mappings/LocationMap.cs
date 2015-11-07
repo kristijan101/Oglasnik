@@ -18,7 +18,7 @@ namespace Oglasnik.DAL.Mappings
             Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(p => p.Name).IsRequired().HasMaxLength(20);
 
-            HasRequired(p => p.County).WithMany(p => p.Locations).HasForeignKey(p => p.CountyID);
+            HasRequired(p => p.County).WithMany(p => p.Locations).HasForeignKey(p => p.CountyID).WillCascadeOnDelete();
 
             ToTable("Locations");
         }

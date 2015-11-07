@@ -18,7 +18,7 @@ namespace Oglasnik.DAL.Mappings
             Property(p => p.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(p => p.Name).IsRequired().HasMaxLength(25);
 
-            HasMany(p => p.PropertyValues).WithRequired(p => p.PropertyType).HasForeignKey(p => p.PropertyTypeId);
+            HasMany(p => p.PropertyValues).WithRequired(p => p.PropertyType).HasForeignKey(p => p.PropertyTypeId).WillCascadeOnDelete();
 
             ToTable("PropertyTypes");
         }

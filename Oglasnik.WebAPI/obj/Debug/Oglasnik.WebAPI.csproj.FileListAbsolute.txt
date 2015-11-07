@@ -26,3 +26,17 @@ C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAP
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\obj\Debug\Oglasnik.WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\obj\Debug\Oglasnik.WebAPI.dll
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\obj\Debug\Oglasnik.WebAPI.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\AutoMapper.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\AutoMapper.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.Model.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.DAL.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\EntityFramework.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.Model.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.DAL.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\EntityFramework.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.Model.Common.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.Model.Common.pdb

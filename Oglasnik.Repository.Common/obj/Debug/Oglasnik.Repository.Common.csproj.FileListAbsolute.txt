@@ -2,3 +2,14 @@ C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repos
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Oglasnik.Repository.Common.pdb
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\obj\Debug\Oglasnik.Repository.Common.dll
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\obj\Debug\Oglasnik.Repository.Common.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\obj\Debug\Oglasnik.Repository.Common.csprojResolveAssemblyReference.cache
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Oglasnik.Model.Common.dll
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Oglasnik.Model.Common.pdb
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Oglasnik.DAL.dll
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\EntityFramework.dll
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Oglasnik.DAL.pdb
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\EntityFramework.xml
+C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Microsoft.AspNet.Identity.Core.xml

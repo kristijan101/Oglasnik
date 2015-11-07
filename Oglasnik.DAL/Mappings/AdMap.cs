@@ -20,8 +20,8 @@ namespace Oglasnik.DAL.Mappings
             Property(p => p.Description).IsRequired();
             Property(p => p.PostDate).IsRequired();
 
-            HasRequired(p => p.Category).WithMany(p => p.Ads).HasForeignKey(p => p.CategoryID); // 1 - *
-            HasRequired(p => p.User).WithMany(p => p.Ads).HasForeignKey(p => p.UserID);     // 1 - *
+            HasRequired(p => p.Category).WithMany(p => p.Ads).HasForeignKey(p => p.CategoryID).WillCascadeOnDelete(); // 1 - *
+            HasRequired(p => p.User).WithMany(p => p.Ads).HasForeignKey(p => p.UserID).WillCascadeOnDelete();     // 1 - *
             
             ToTable("Ads");           
         }
