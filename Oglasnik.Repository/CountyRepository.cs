@@ -10,10 +10,12 @@ using AutoMapper;
 using System.Linq.Expressions;
 using System.Data.Entity;
 using Oglasnik.DAL.Entities;
+using Oglasnik.Repository.Common;
+using System.Data.Entity.Infrastructure;
 
 namespace Oglasnik.Repository
 {
-    public class CountyRepository
+    public class CountyRepository : ICountyRepository
     {
         private IOglasnikContext context;
 
@@ -22,11 +24,6 @@ namespace Oglasnik.Repository
             this.context = context;
         }
 
-        /// <summary>
-        /// Get County by id.
-        /// </summary>
-        /// <param name="id">County identifier</param>
-        /// <returns>matching instance of County</returns>
         public async Task<ICounty> GetAsync(Guid id)
         {
             return Mapper.Map<ICounty>(await context.Counties.FindAsync(id));
@@ -40,6 +37,38 @@ namespace Oglasnik.Repository
         public async Task<IEnumerable<ICounty>> GetAllAsync()
         {
             return Mapper.Map<IEnumerable<ICounty>>(await context.Counties.ToListAsync());
+        }
+
+        public async Task<int> AddAsync(ICounty county)
+        {
+            context.Counties.Add(Mapper.Map<CountyEntity>(county));
+            return await context.SaveChangesAsync();
+        }
+
+        public async Task<int> UpdateAsync(ICounty county)
+        {
+            var entity = Mapper.Map<CountyEntity>(county);
+            DbEntityEntry entry = context.Entry(entity);
+
+            if(entry.State == EntityState.Detached)
+            {
+                context.Counties.Attach(entity);
+            }
+            entry.State = EntityState.Modified;
+
+            return await context.SaveChangesAsync();
+        }
+
+        public async Task<int> DeleteAsync(ICounty county)
+        {
+            context.Counties.Remove(Mapper.Map<CountyEntity>(county));
+            return await context.SaveChangesAsync();
+        }
+
+        public async Task<int> DeleteAsync(Guid id)
+        {
+            context.Counties.Remove(Mapper.Map<CountyEntity>(await GetAsync(id)));
+            return await context.SaveChangesAsync();
         }
     }
 }

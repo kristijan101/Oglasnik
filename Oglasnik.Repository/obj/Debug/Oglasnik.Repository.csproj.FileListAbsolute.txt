@@ -18,3 +18,7 @@ C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repos
 C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Model.Common.pdb
 C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\AutoMapper.xml
 C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Ninject.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Repository.Common.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Repository.Common.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Ninject.xml

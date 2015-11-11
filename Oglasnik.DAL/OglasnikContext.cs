@@ -4,6 +4,7 @@ using Oglasnik.DAL.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,16 +23,6 @@ namespace Oglasnik.DAL
         public DbSet<LocationEntity> Locations { get; set; }
         public DbSet<PropertyTypeEntity> PropertyTypes { get; set; }
         public DbSet<PropertyValueEntity> PropertyValues { get; set; }
-
-        public override DbSet<TEntity> Set<TEntity>()
-        {
-            return base.Set<TEntity>();
-        }
-
-        public override async Task<int> SaveChangesAsync()
-        {
-            return await base.SaveChangesAsync();
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

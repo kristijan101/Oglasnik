@@ -50,6 +50,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -62,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CountyRepository.cs" />
+    <Compile Include="DIModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +77,10 @@
     <ProjectReference Include="..\Oglasnik.Model.Common\Oglasnik.Model.Common.csproj">
       <Project>{dbb129ee-37aa-449d-9034-5561b4b66b18}</Project>
       <Name>Oglasnik.Model.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oglasnik.Repository.Common\Oglasnik.Repository.Common.csproj">
+      <Project>{12c27035-3060-43b0-9b41-9cd0d45d5cf0}</Project>
+      <Name>Oglasnik.Repository.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

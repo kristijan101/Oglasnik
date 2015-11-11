@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +44,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CountyService.cs" />
+    <Compile Include="DIModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Oglasnik.DAL\Oglasnik.DAL.csproj">
+      <Project>{f8ef18a7-fd39-41f0-8359-93adaa3da944}</Project>
+      <Name>Oglasnik.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oglasnik.Model.Common\Oglasnik.Model.Common.csproj">
+      <Project>{dbb129ee-37aa-449d-9034-5561b4b66b18}</Project>
+      <Name>Oglasnik.Model.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oglasnik.Repository.Common\Oglasnik.Repository.Common.csproj">
+      <Project>{12c27035-3060-43b0-9b41-9cd0d45d5cf0}</Project>
+      <Name>Oglasnik.Repository.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oglasnik.Services.Common\Oglasnik.Services.Common.csproj">
+      <Project>{b70dc577-e381-4ff9-be53-b4182dec1e7f}</Project>
+      <Name>Oglasnik.Services.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,6 +15,8 @@ namespace Oglasnik.Repository.Common
         Task<ICounty> GetAsync(Expression<Func<CountyEntity,bool>> predicate);
         Task<IEnumerable<ICounty>> GetAllAsync();
         Task<int> AddAsync(ICounty county);
-        Task<int> UpdateAsync();  
+        Task<int> UpdateAsync(ICounty county);
+        Task<int> DeleteAsync(ICounty county);
+        Task<int> DeleteAsync(Guid id);
     }
 }
