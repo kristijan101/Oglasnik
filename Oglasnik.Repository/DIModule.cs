@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Oglasnik.Repository.Common;
+using Oglasnik.Model.Common;
 
 namespace Oglasnik.Repository
 {
@@ -14,6 +15,7 @@ namespace Oglasnik.Repository
         public override void Load()
         {
             Bind<IOglasnikContext>().To<OglasnikContext>();
+            Bind<ILocationRepository>().To<LocationRepository>();
             Bind<ICountyRepository>().To<CountyRepository>();
         }
     }

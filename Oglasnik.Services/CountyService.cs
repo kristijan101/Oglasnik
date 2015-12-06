@@ -1,51 +1,59 @@
-﻿using Oglasnik.Repository.Common;
+﻿using Oglasnik.Model.Common;
+using Oglasnik.Repository.Common;
 using Oglasnik.Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Oglasnik.Model.Common;
 
 namespace Oglasnik.Services
 {
     public class CountyService : ICountyService
     {
-        private ICountyRepository rep;
+        private ICountyRepository repository;
 
-        public CountyService(ICountyRepository rep)
+        public CountyService(ICountyRepository repository)
         {
-            this.rep = rep;
+            this.repository = repository;
         }
 
-        public async Task<ICounty> GetByIdAsync(Guid id)
+        #region Methods
+
+        public virtual Task<int> Add(ICounty county)
         {
-            return await rep.GetAsync(id);
+            repository.Add(county);
+            return repository.SaveChanges();
         }
 
-        public async Task<IEnumerable<ICounty>> GetAllAsync()
+        public virtual Task<int> Delete(ICounty county)
         {
-            return await rep.GetAllAsync();
+            repository.Delete(county);
+            return repository.SaveChanges();
         }
 
-        public async Task<int> AddAsync(ICounty cty)
+        public virtual Task<int> Delete(Guid id)
         {
-            return await rep.AddAsync(cty);
+            repository.Delete(id);
+            return repository.SaveChanges();
         }
 
-        public async Task<int> UpdateAsync(ICounty county)
+        public virtual Task<IEnumerable<ICounty>> GetAll()
         {
-            return await rep.UpdateAsync(county);
+            return repository.GetAllAsync();
         }
 
-        public async Task<int> DeleteAsync(ICounty county)
+        public virtual Task<ICounty> GetById(Guid id)
         {
-            return await rep.DeleteAsync(county);
+            return repository.GetAsync(id);
         }
 
-        public async Task<int> DeleteAsync(Guid id)
+        public virtual Task<int> Update(ICounty county)
         {
-            return await rep.DeleteAsync(id);
+            repository.Update(county);
+            return repository.SaveChanges();
         }
+
+        #endregion
     }
 }

@@ -10,7 +10,7 @@ namespace Oglasnik.DAL.Entities
     {      
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string CategoryID { get; set; }
+        public Guid CategoryID { get; set; }
         
         public virtual CategoryEntity Category { get; set; }
         public virtual ICollection<PropertyValueEntity> PropertyValues { get; set; }

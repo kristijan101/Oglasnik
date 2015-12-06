@@ -13,7 +13,10 @@ namespace Oglasnik.WebAPI.App_Start
         /// </summary>
         public static void Initialize()
         {
-            Mapper.Initialize(cfg => cfg.AddProfile<Oglasnik.Model.AutoMapperModelConfig>());
+            Mapper.Initialize(cfg => {
+                cfg.AddProfile<Model.AutoMapperModelConfig>();
+                cfg.AddProfile<AutoMapperWebApiConfig>();
+            });
         }
     }
 }

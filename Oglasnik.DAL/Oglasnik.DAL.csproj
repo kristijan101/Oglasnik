@@ -64,6 +64,7 @@
     <Compile Include="Entities\CountyEntity.cs" />
     <Compile Include="Entities\LocationEntity.cs" />
     <Compile Include="Entities\PropertyValueEntity.cs" />
+    <Compile Include="Initializers\OglasnikDbInitializer.cs" />
     <Compile Include="Mappings\AdMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\CountyMap.cs" />

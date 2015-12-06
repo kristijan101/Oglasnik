@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="CountyRepository.cs" />
     <Compile Include="DIModule.cs" />
+    <Compile Include="LocationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

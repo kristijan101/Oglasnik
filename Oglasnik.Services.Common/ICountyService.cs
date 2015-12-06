@@ -9,11 +9,11 @@ namespace Oglasnik.Services.Common
 {
     public interface ICountyService
     {
-        Task<ICounty> GetByIdAsync(Guid id);
-        Task<IEnumerable<ICounty>> GetAllAsync();
-        Task<int> AddAsync(ICounty county);
-        Task<int> UpdateAsync(ICounty county);
-        Task<int> DeleteAsync(ICounty county);
-        Task<int> DeleteAsync(Guid id);
+        Task<int> Add(ICounty cty);
+        Task<int> Delete(ICounty county);
+        Task<int> Delete(Guid id);
+        Task<IEnumerable<ICounty>> GetAll();
+        Task<ICounty> GetById(Guid id);
+        Task<int> Update(ICounty county);
     }
 }

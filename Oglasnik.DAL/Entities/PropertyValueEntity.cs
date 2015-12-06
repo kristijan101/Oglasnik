@@ -10,7 +10,7 @@ namespace Oglasnik.DAL.Entities
     {
         public Guid Id { get; set; }
         public string Value { get; set; }
-        public int PropertyTypeId { get; set; }
+        public Guid PropertyTypeId { get; set; }
 
         public virtual PropertyTypeEntity PropertyType { get; set; }
     }

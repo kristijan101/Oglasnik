@@ -1,0 +1,22 @@
+﻿<a ui-sref="admin.county.create" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> Add</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>County</th>
+            <th>Locations</th>
+            <th></th>
+        </tr>     
+    </thead>
+    <tbody>
+        <tr ng-repeat="county in countyCtrl.data">
+            <td>{{$index+1}}</td>
+            <td>{{county.Name}}</td>
+            <td>{{countyCtrl.locToString(county.Locations)}}</td>           
+            <td>
+                <a ui-sref="admin.county.update" title="edit" role="button" class="btn btn-xs btn-default" ng-click="countyCtrl.edit($index)"><span class="glyphicon glyphicon-pencil"></span>  </a>
+                <a title="delete" role="button" class="btn btn-xs btn-default" ng-click="countyCtrl.delete(county.Id)"><span class="glyphicon glyphicon-remove"></span>  </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

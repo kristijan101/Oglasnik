@@ -8,7 +8,7 @@ namespace Oglasnik.Model.Common
 {
     public interface ICounty
     {
-        Guid Id { get; set; }
+        Guid? Id { get; set; }
         string Name { get; set; }
 
         ICollection<ILocation> Locations { get; set; }

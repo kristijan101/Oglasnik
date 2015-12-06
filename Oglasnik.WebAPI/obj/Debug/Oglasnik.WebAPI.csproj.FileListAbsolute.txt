@@ -56,3 +56,10 @@ C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAP
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Ninject.Web.WebApi.xml
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Ninject.Web.WebApi.WebHost.xml
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.Repository.Common.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\EntityFramework.SqlServer.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\EntityFramework.SqlServer.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.Repository.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\Oglasnik.Repository.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\System.Web.Cors.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\System.Web.Http.Cors.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.WebAPI\bin\System.Web.Http.Cors.xml

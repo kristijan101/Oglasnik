@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using Oglasnik.Model.Common;
 using Oglasnik.Services.Common;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Oglasnik.Services
     {
         public override void Load()
         {
+            Bind<ILocationService>().To<LocationService>();
             Bind<ICountyService>().To<CountyService>();
         }
     }

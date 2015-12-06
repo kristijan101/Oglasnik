@@ -13,8 +13,8 @@ namespace Oglasnik.Model
     {
         public AutoMapperModelConfig()
         {
-            Mapper.CreateMap<ICounty, CountyEntity>().ReverseMap();
-            Mapper.CreateMap<ILocation, LocationEntity>().ReverseMap();
+            Mapper.CreateMap<ICounty, CountyEntity>().ForMember(m => m.Id, opt => opt.NullSubstitute(Guid.Empty)).ReverseMap();
+            Mapper.CreateMap<ILocation, LocationEntity>().ForMember(m => m.Id, opt => opt.NullSubstitute(Guid.Empty)).ReverseMap();
         }
     }
 }
