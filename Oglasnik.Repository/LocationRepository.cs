@@ -51,6 +51,20 @@ namespace Oglasnik.Repository
             Entities.Remove(Mapper.Map<LocationEntity>(county));
         }
 
+        public virtual void Delete(Guid id)
+        {
+            LocationEntity county = new LocationEntity { Id = id };
+
+            DbEntityEntry entry = context.Entry(county);
+
+            if (entry.State == EntityState.Detached)
+            {
+                Entities.Attach(county);
+            }
+
+            entry.State = EntityState.Deleted;
+        }
+
         public virtual async Task<IEnumerable<ILocation>> GetAllAsync()
         {
             return Mapper.Map<IEnumerable<ILocation>>(await Entities.ToListAsync());

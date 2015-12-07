@@ -17,3 +17,4 @@ C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.UI\bi
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.UI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.UI\obj\Debug\Oglasnik.UI.dll
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.UI\obj\Debug\Oglasnik.UI.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.UI\obj\Debug\Oglasnik.UI.csprojResolveAssemblyReference.cache

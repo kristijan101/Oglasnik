@@ -72,6 +72,11 @@
     <Content Include="app\components\county\county.list.html" />
     <Content Include="app\components\county\countyController.js" />
     <Content Include="app\components\county\countyService.js" />
+    <Content Include="app\components\location\location.create.html" />
+    <Content Include="app\components\location\location.html" />
+    <Content Include="app\components\location\location.list.html" />
+    <Content Include="app\components\location\location.edit.html" />
+    <Content Include="app\components\location\locationController.js" />
     <Content Include="app\components\location\locationService.js" />
     <Content Include="app\shared\admin\admin.html" />
     <Content Include="assets\css\bootstrap\bootstrap-theme.css" />

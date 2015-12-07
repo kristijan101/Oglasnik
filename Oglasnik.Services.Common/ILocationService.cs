@@ -9,10 +9,11 @@ namespace Oglasnik.Services.Common
 {
     public interface ILocationService
     {
-        void Add(ILocation cty);
-        void Delete(ILocation county);
+        Task<int> Add(ILocation cty);
+        Task<int> Delete(ILocation county);
+        Task<int> Delete(Guid id);
         Task<IEnumerable<ILocation>> GetAll();
         Task<ILocation> GetById(Guid id);
-        void Update(ILocation county);
+        Task<int> Update(ILocation county);
     }
 }

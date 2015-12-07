@@ -11,6 +11,7 @@ namespace Oglasnik.Repository.Common
     {
         void Add(ILocation county);
         void Delete(ILocation county);
+        void Delete(Guid id);
         Task<IEnumerable<ILocation>> GetAllAsync();
         Task<ILocation> GetAsync(Guid id);
         Task<int> SaveChanges();

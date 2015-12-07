@@ -1,0 +1,22 @@
+﻿<a ui-sref="admin.location.create" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> Add</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Location</th>
+            <th>County</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="location in locationCtrl.data">
+            <td>{{$index+1}}</td>
+            <td>{{location.Name}}</td>
+            <td>{{location.County}}</td>
+            <td>
+                <a ui-sref="admin.location.update" title="Edit" role="button" class="btn btn-xs btn-default" ng-click="locationCtrl.edit($index)"><span class="glyphicon glyphicon-pencil"></span>  </a>
+                <a title="Delete" role="button" class="btn btn-xs btn-default" ng-click="locationCtrl.delete(location.Id)"><span class="glyphicon glyphicon-remove"></span>  </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

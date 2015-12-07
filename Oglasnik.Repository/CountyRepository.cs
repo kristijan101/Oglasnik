@@ -90,7 +90,7 @@ namespace Oglasnik.Repository
             CountyEntity entity = Mapper.Map<CountyEntity>(county);
 
             DbEntityEntry entry = context.Entry(entity);
-
+            
             if (entry.State == EntityState.Detached)
             {
                 Entities.Attach(entity);

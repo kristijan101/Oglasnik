@@ -11,3 +11,4 @@ C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\b
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\obj\Debug\Oglasnik.DAL.dll
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\obj\Debug\Oglasnik.DAL.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.DAL\obj\Debug\Oglasnik.DAL.csprojResolveAssemblyReference.cache

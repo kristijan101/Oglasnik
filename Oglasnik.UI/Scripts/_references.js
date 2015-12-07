@@ -2,6 +2,7 @@
 /// <reference path="../app/app.module.js" />
 /// <reference path="../app/components/county/countycontroller.js" />
 /// <reference path="../app/components/county/countyservice.js" />
+/// <reference path="../app/components/location/locationcontroller.js" />
 /// <reference path="../app/components/location/locationservice.js" />
 /// <reference path="../assets/js/bootstrap.js" />
 /// <reference path="../assets/lib/jQuery-1.9.1/jquery-1.9.1.js" />

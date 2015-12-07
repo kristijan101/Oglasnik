@@ -13,7 +13,8 @@ namespace Oglasnik.WebAPI.App_Start
         public AutoMapperWebApiConfig()
         {
             Mapper.CreateMap<ICounty, CountyVM>().ReverseMap();
-            Mapper.CreateMap<ILocation, LocationVM>().ReverseMap();
+            Mapper.CreateMap<ILocation, LocationVM>().ForMember(m => m.County, opt => opt.MapFrom(m => m.County.Name));
+            Mapper.CreateMap<LocationVM, ILocation>().ForMember(m => m.County, opt => opt.Ignore());
         }
     }
 }

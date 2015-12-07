@@ -20,16 +20,22 @@ namespace Oglasnik.Services
 
         #region Methods
 
-        public virtual void Add(ILocation county)
+        public virtual Task<int> Add(ILocation county)
         {
             repository.Add(county);
-            repository.SaveChanges();
+            return repository.SaveChanges();
         }
 
-        public virtual void Delete(ILocation county)
+        public virtual Task<int> Delete(ILocation county)
         {
             repository.Delete(county);
-            repository.SaveChanges();
+            return repository.SaveChanges();
+        }
+
+        public virtual Task<int> Delete(Guid id)
+        {
+            repository.Delete(id);
+            return repository.SaveChanges();
         }
 
         public virtual Task<IEnumerable<ILocation>> GetAll()
@@ -42,10 +48,10 @@ namespace Oglasnik.Services
             return repository.GetAsync(id);
         }
 
-        public virtual void Update(ILocation county)
+        public virtual Task<int> Update(ILocation county)
         {
             repository.Update(county);
-            repository.SaveChanges();
+            return repository.SaveChanges();
         }
 
         #endregion

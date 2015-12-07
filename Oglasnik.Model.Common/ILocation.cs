@@ -7,5 +7,7 @@ namespace Oglasnik.Model.Common
         Guid? Id { get; set; }
         string Name { get; set; }
         Guid CountyID { get; set; }
+
+        ICounty County { get; set; }
     }
 }

@@ -27,7 +27,6 @@
                 })
             },
             updateCounty: function (county) {
-                console.log(county);
                 return $http.put("http://localhost:51102/api/county", county);
             }
         }

@@ -14,8 +14,8 @@
             <td>{{county.Name}}</td>
             <td>{{countyCtrl.locToString(county.Locations)}}</td>           
             <td>
-                <a ui-sref="admin.county.update" title="edit" role="button" class="btn btn-xs btn-default" ng-click="countyCtrl.edit($index)"><span class="glyphicon glyphicon-pencil"></span>  </a>
-                <a title="delete" role="button" class="btn btn-xs btn-default" ng-click="countyCtrl.delete(county.Id)"><span class="glyphicon glyphicon-remove"></span>  </a>
+                <a ui-sref="admin.county.update" title="Edit" role="button" class="btn btn-xs btn-default" ng-click="countyCtrl.edit($index)"><span class="glyphicon glyphicon-pencil"></span>  </a>
+                <a title="Delete" role="button" class="btn btn-xs btn-default" ng-click="countyCtrl.delete(county.Id)"><span class="glyphicon glyphicon-remove"></span>  </a>
             </td>
         </tr>
     </tbody>

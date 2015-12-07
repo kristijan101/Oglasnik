@@ -6,8 +6,8 @@
         vm.add = add;
         vm.cancel = cancel;
         vm.county = resetCountyObj();
-        vm.delete = deleteCounty;
         vm.data = [];
+        vm.delete = deleteCounty;        
         vm.edit = editForm;
         vm.locToString = locationsToString;
         vm.update = update;
@@ -31,7 +31,7 @@
                 getCounties();
             })
         }
-
+        //prepares form for editing the selected county
         function editForm(idx) {
             var entry = vm.data[idx];
             for(var p in entry){
