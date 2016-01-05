@@ -19,3 +19,5 @@ C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Servi
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services\bin\Debug\EntityFramework.xml
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services\obj\Debug\Oglasnik.Services.csprojResolveAssemblyReference.cache
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services\bin\Debug\Oglasnik.Common.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services\bin\Debug\Oglasnik.Common.pdb

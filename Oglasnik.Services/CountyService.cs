@@ -1,4 +1,5 @@
-﻿using Oglasnik.Model.Common;
+﻿using Oglasnik.Common;
+using Oglasnik.Model.Common;
 using Oglasnik.Repository.Common;
 using Oglasnik.Services.Common;
 using System;
@@ -20,38 +21,59 @@ namespace Oglasnik.Services
 
         #region Methods
 
-        public virtual Task<int> Add(ICounty county)
+        public Task<bool> Add(ICounty county)
         {
-            repository.Add(county);
-            return repository.SaveChanges();
+            if (county == null)
+            {
+                throw new ArgumentNullException("county");
+            }
+
+            return repository.Add(county);
         }
 
-        public virtual Task<int> Delete(ICounty county)
+        public Task<bool> Delete(ICounty county)
         {
-            repository.Delete(county);
-            return repository.SaveChanges();
+            if (county == null)
+            {
+                throw new ArgumentNullException("county");
+            }
+
+            return repository.Delete(county);
         }
 
-        public virtual Task<int> Delete(Guid id)
+        public Task<bool> Delete(Guid id)
         {
-            repository.Delete(id);
-            return repository.SaveChanges();
+            return repository.Delete(id);
         }
 
-        public virtual Task<IEnumerable<ICounty>> GetAll()
+        public Task<IEnumerable<ICounty>> GetAll()
         {
             return repository.GetAllAsync();
         }
 
-        public virtual Task<ICounty> GetById(Guid id)
+        public Task<ICounty> GetById(Guid id)
         {
             return repository.GetAsync(id);
         }
 
-        public virtual Task<int> Update(ICounty county)
+        public Task<IEnumerable<ICounty>> GetRange(IFilter filter)
         {
-            repository.Update(county);
-            return repository.SaveChanges();
+            if(filter == null)
+            {
+                throw new ArgumentNullException("filter");
+            }
+
+            return repository.GetRangeAsync(filter);
+        }
+
+        public Task<bool> Update(ICounty county)
+        {
+            if(county == null)
+            {
+                throw new ArgumentNullException("county");
+            }
+
+            return repository.Update(county);
         }
 
         #endregion

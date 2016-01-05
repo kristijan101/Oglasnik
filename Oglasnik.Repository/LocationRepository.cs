@@ -1,101 +1,104 @@
 ﻿using AutoMapper;
-using Oglasnik.DAL.Contracts;
+using Oglasnik.Common;
 using Oglasnik.DAL.Entities;
 using Oglasnik.Model.Common;
 using Oglasnik.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Oglasnik.Repository
 {
-    public class LocationRepository:ILocationRepository
+    public class LocationRepository : ILocationRepository
     {
-        #region Properties
-
-        private IOglasnikContext context;
-
-        protected DbSet<LocationEntity> Entities
-        {
-            get
-            {
-                return context.Set<LocationEntity>();
-            }
-        }
-
-        #endregion
+        private IRepository<LocationEntity> repository;
 
         #region Constructor
 
-        public LocationRepository(IOglasnikContext context)
+        public LocationRepository(IRepository<LocationEntity> repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
         #endregion
 
         #region Methods
 
-        public virtual void Add(ILocation county)
+        public Task<bool> Add(ILocation location)
         {
-            Entities.Add(Mapper.Map<LocationEntity>(county));
-        }
-
-        public virtual void Delete(ILocation county)
-        {
-            Entities.Remove(Mapper.Map<LocationEntity>(county));
-        }
-
-        public virtual void Delete(Guid id)
-        {
-            LocationEntity county = new LocationEntity { Id = id };
-
-            DbEntityEntry entry = context.Entry(county);
-
-            if (entry.State == EntityState.Detached)
+            if(location == null)
             {
-                Entities.Attach(county);
+                throw new ArgumentNullException("location");
             }
 
-            entry.State = EntityState.Deleted;
+            return repository.AddAsync(Mapper.Map<LocationEntity>(location));
         }
 
-        public virtual async Task<IEnumerable<ILocation>> GetAllAsync()
+        public Task<bool> Delete(ILocation location)
         {
-            return Mapper.Map<IEnumerable<ILocation>>(await Entities.ToListAsync());
-        }
-
-        public virtual async Task<ILocation> GetAsync(Guid id)
-        {
-            return Mapper.Map<ILocation>(await Entities.FindAsync(id));
-        }
-
-        public virtual async Task<ILocation> GetAsync(Expression<Func<LocationEntity, bool>> predicate)
-        {
-            return Mapper.Map<ILocation>(await Entities.FirstAsync(predicate));
-        }
-
-        public virtual Task<int> SaveChanges()
-        {
-            return context.SaveChangesAsync();
-        }
-
-        public virtual void Update(ILocation county)
-        {
-            LocationEntity entity = Mapper.Map<LocationEntity>(county);
-
-            DbEntityEntry entry = context.Entry(entity);
-
-            if (entry.State == EntityState.Detached)
+            if (location == null)
             {
-                Entities.Attach(entity);
+                throw new ArgumentNullException("location");
             }
-            entry.State = EntityState.Modified;
+
+            return repository.DeleteAsync(Mapper.Map<LocationEntity>(location));
+        }
+
+        public Task<bool> Delete(Guid id)
+        {
+            LocationEntity location = new LocationEntity { Id = id };
+
+            return repository.DeleteAsync(location);
+        }
+
+        public async Task<IEnumerable<ILocation>> GetAllAsync()
+        {
+            return Mapper.Map<IEnumerable<ILocation>>(await repository.GetAll().ToListAsync());
+        }
+
+        public async Task<ILocation> GetAsync(Guid id)
+        {
+            return Mapper.Map<ILocation>(await repository.GetById(id));
+        }
+
+        public async Task<IEnumerable<ILocation>> GetRangeAsync(IFilter filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException("filter");
+            }
+
+            var query = repository.GetAll();
+
+            if (!String.IsNullOrEmpty(filter.SearchString))
+            {
+                query = query.OrderBy(e => e.Name)
+                            .Where(e => e.Name.ToLower().Contains(filter.SearchString.ToLower()))
+                            .Skip((filter.PageNumber - 1) * filter.PageSize)
+                            .Take(filter.PageSize);
+            }
+            else
+            {
+                query = query.OrderBy(e => e.Name)
+                            .Skip((filter.PageNumber - 1) * filter.PageSize)
+                            .Take(filter.PageSize);
+            }
+                                
+            return Mapper.Map<IEnumerable<ILocation>>(await query.ToListAsync());
+        }
+
+        public Task<bool> Update(ILocation location)
+        {
+            if (location == null)
+            {
+                throw new ArgumentNullException("location");
+            }
+
+            LocationEntity entity = Mapper.Map<LocationEntity>(location);
+
+            return repository.UpdateAsync(entity);
         }
 
         #endregion

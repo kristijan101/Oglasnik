@@ -1,0 +1,26 @@
+﻿<form id="location_new" class="form-horizontal">
+    <fieldset>
+        <legend>New location</legend>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="county_name">Name</label>
+            <div class="col-md-4">
+                <input ng-model="locationAdd.location.Name" ng-model-options="{updateOn:'blur'}" id="location_name" name="location_name" type="text" placeholder="Location" class="form-control input-md" required="required">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="select_county">County</label>
+            <div class="col-md-4">
+                <select ng-model="locationAdd.location.CountyID" ng-options="county.Id as county.Name for county in locationAdd.counties" id="select_county" name="select_county" class="form-control" required="required">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit_county"></label>
+            <div class="col-md-8">
+                <button type="submit" form="location_new" id="submit_location" name="submit_location" class="btn btn-primary" ng-click="locationAdd.add(locationAdd.location)">Add</button>
+                <button name="button2id" class="btn btn-inverse" ng-click="locationAdd.cancel()">Cancel</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

@@ -1,101 +1,99 @@
 ﻿using AutoMapper;
-using Oglasnik.DAL.Contracts;
+using Oglasnik.Common;
 using Oglasnik.DAL.Entities;
 using Oglasnik.Model.Common;
 using Oglasnik.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Oglasnik.Repository
 {
     public class CountyRepository : ICountyRepository
     {
-        #region Properties
-
-        private IOglasnikContext context;
-
-        protected DbSet<CountyEntity> Entities
-        {
-            get
-            {
-                return context.Set<CountyEntity>();
-            }
-        }
-
-        #endregion
+        private IRepository<CountyEntity> repository;
 
         #region Constructor
 
-        public CountyRepository(IOglasnikContext context)
+        public CountyRepository(IRepository<CountyEntity> repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
         #endregion
 
         #region Methods
 
-        public virtual void Add(ICounty county)
+        public Task<bool> Add(ICounty county)
         {
-            Entities.Add(Mapper.Map<CountyEntity>(county));
+            if(county == null)
+            {
+                throw new ArgumentNullException("county");
+            }
+            return repository.AddAsync(Mapper.Map<CountyEntity>(county));
         }
 
-        public virtual void Delete(ICounty county)
+        public Task<bool> Delete(ICounty county)
         {
-            Entities.Remove(Mapper.Map<CountyEntity>(county));
+            if (county == null)
+            {
+                throw new ArgumentNullException("county");
+            }
+            return repository.DeleteAsync(Mapper.Map<CountyEntity>(county));
         }
 
-        public virtual void Delete(Guid id)
+        public Task<bool> Delete(Guid id)
         {
             CountyEntity county = new CountyEntity { Id = id };
-
-            DbEntityEntry entry = context.Entry(county);
-
-            if(entry.State == EntityState.Detached)
-            {
-                Entities.Attach(county);
-            }
-  
-            entry.State = EntityState.Deleted;
-        }
-
-        public virtual async Task<IEnumerable<ICounty>> GetAllAsync()
-        {
-            return Mapper.Map<IEnumerable<ICounty>>(await Entities.ToListAsync());
-        }
-
-        public virtual async Task<ICounty> GetAsync(Guid id)
-        {
-            return Mapper.Map<ICounty>(await Entities.FindAsync(id));
-        }
-
-        public virtual async Task<ICounty> GetAsync(Expression<Func<CountyEntity, bool>> predicate)
-        {
-            return Mapper.Map<ICounty>(await Entities.FirstAsync(predicate));
-        }
-
-        public virtual Task<int> SaveChanges()
-        {
-            return context.SaveChangesAsync();
-        }
-
-        public virtual void Update(ICounty county)
-        {
-            CountyEntity entity = Mapper.Map<CountyEntity>(county);
-
-            DbEntityEntry entry = context.Entry(entity);
             
-            if (entry.State == EntityState.Detached)
+            return repository.DeleteAsync(county);
+        }
+
+        public async Task<IEnumerable<ICounty>> GetAllAsync()
+        {
+            return Mapper.Map<IEnumerable<ICounty>>(await repository.GetAll().ToListAsync());
+        }
+
+        public async Task<ICounty> GetAsync(Guid id)
+        {
+            return Mapper.Map<ICounty>(await repository.GetById(id));
+        }
+
+        public async Task<IEnumerable<ICounty>> GetRangeAsync(IFilter filter)
+        {
+            if(filter == null)
             {
-                Entities.Attach(entity);
+                throw new ArgumentNullException("filter");
             }
-            entry.State = EntityState.Modified;
+
+            var query = repository.GetAll();
+
+            if (!String.IsNullOrEmpty(filter.SearchString))
+            {
+                query = query.OrderBy(e => e.Name)
+                             .Where(e => e.Name.ToLower().Contains(filter.SearchString.ToLower()))
+                             .Skip((filter.PageNumber - 1) * filter.PageSize)
+                             .Take(filter.PageSize);
+            } else
+            {
+                query = query.OrderBy(e => e.Name)
+                             .Skip((filter.PageNumber - 1) * filter.PageSize)
+                             .Take(filter.PageSize);
+            }
+
+            return Mapper.Map<IEnumerable<ICounty>>(await query.ToListAsync());
+        }
+
+        public Task<bool> Update(ICounty county)
+        {
+            if (county == null)
+            {
+                throw new ArgumentNullException("county");
+            }
+
+            return repository.UpdateAsync(Mapper.Map<CountyEntity>(county));
         }
 
         #endregion

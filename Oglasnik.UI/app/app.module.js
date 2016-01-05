@@ -1,7 +1,7 @@
 ﻿(function(){
     angular
         .module("app", ["angular-loading-bar", "ui.router"])
-        .config(["$stateProvider", "$urlRouterProvider", RoutesConfig]);
+            .config(["$stateProvider", "$urlRouterProvider", RoutesConfig]);
 
     function RoutesConfig($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
@@ -12,35 +12,77 @@
                 url:"/admin",
                 templateUrl: "app/shared/admin/admin.html"
             })
-            .state("admin.county", {               
-                templateUrl: "app/components/county/county.html",
-                controller: "CountyController as countyCtrl"
+            .state("admin.county", {
+                url:"/county",
+                templateUrl: "app/components/county/county.list.html",
+                controller: "CountyController as county",
+                resolve: {
+                    counties: ["countyService",
+                        function (countyService) {
+                            return countyService.getAll();
+                        }
+                    ]
+                }
             })
-            .state("admin.county.list", {
-                url: "/admin/county",
-                templateUrl: "app/components/county/county.list.html"
+            .state("admin.countyAdd", {
+                url: "/county/new",
+                templateUrl: "app/components/county/county.add.html",
+                controller: "CountyAddController as countyAdd"
             })
-            .state("admin.county.create", {
-                templateUrl: "app/components/county/county.create.html"
-            })
-            .state("admin.county.update", {
-                templateUrl: "app/components/county/county.edit.html"
+            .state("admin.countyEdit", {
+                url:"/county/edit/:id",
+                templateUrl: "app/components/county/county.edit.html",
+                controller: "CountyEditController as countyEdit",
+                resolve: {
+                    county: ["countyService", "$stateParams",
+                        function (countyService, $stateParams) {
+                            return countyService.getById($stateParams.id);
+                        }
+                    ]
+                }
             });
         //location
         $stateProvider
             .state("admin.location", {
-                templateUrl: "app/components/location/location.html",
-                controller: "LocationController as locationCtrl"
+                url: "/location",
+                templateUrl: "app/components/location/location.list.html",
+                controller: "LocationController as location",
+                resolve: {
+                    locations: ["locationService",
+                        function (locationService) {
+                            return locationService.getAll();
+                        }
+                    ]
+                }
             })
-            .state("admin.location.list", {
-                url: "/admin/location",
-                templateUrl: "app/components/location/location.list.html"
+            .state("admin.locationAdd", {
+                url: "/location/new",
+                templateUrl: "app/components/location/location.add.html",
+                controller: "LocationAddController as locationAdd",
+                resolve: {
+                    counties: ["countyService",
+                        function (countyService) {
+                            return countyService.getAll();
+                        }
+                    ]
+                }
             })
-            .state("admin.location.create", {
-                templateUrl: "app/components/location/location.create.html"
-            })
-            .state("admin.location.update", {
-                templateUrl: "app/components/location/location.edit.html"
+            .state("admin.locationEdit", {
+                url: "/location/edit/:id",
+                templateUrl: "app/components/location/location.edit.html",
+                controller: "LocationEditController as locationEdit",
+                resolve: {
+                    location: ["locationService", "$stateParams",
+                        function (locationService, $stateParams) {
+                            return locationService.getById($stateParams.id);
+                        }
+                    ],
+                    counties: ["countyService",
+                        function (countyService) {
+                            return countyService.getAll();
+                        }
+                    ]
+                }
             });
     }
 })()

@@ -53,6 +53,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Oglasnik.Common\Oglasnik.Common.csproj">
+      <Project>{2a4075a6-3860-4978-8643-96a073a6ab1a}</Project>
+      <Name>Oglasnik.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oglasnik.DAL\Oglasnik.DAL.csproj">
       <Project>{f8ef18a7-fd39-41f0-8359-93adaa3da944}</Project>
       <Name>Oglasnik.DAL</Name>

@@ -4,15 +4,15 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="county_name">Name</label>
             <div class="col-md-4">
-                <input ng-model="countyCtrl.county.Name" ng-model-options="{updateOn:'blur'}" id="county_name" name="county_name" type="text" placeholder="County" class="form-control input-md" required="required">
+                <input ng-model="countyEdit.county.Name" ng-model-options="{updateOn:'blur'}" id="county_name" name="county_name" type="text" placeholder="County" class="form-control input-md" required="required">
 
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="submit_county"></label>
             <div class="col-md-8">
-                <button id="submit_county" name="submit_county" class="btn btn-primary" ng-click="countyCtrl.update(countyCtrl.county)">Update</button>
-                <button name="button2id" class="btn btn-inverse" ng-click="countyCtrl.cancel()">Cancel</button>
+                <button id="submit_county" name="submit_county" class="btn btn-primary" ng-click="countyEdit.update(countyEdit.county)">Save</button>
+                <button name="button2id" class="btn btn-inverse" ng-click="countyEdit.cancel()">Cancel</button>
             </div>
         </div>
     </fieldset>

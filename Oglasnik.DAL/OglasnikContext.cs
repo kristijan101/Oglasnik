@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Oglasnik.DAL.Entities;
 using Oglasnik.DAL.Mappings;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oglasnik.DAL
 {
     public class OglasnikContext : IdentityDbContext<UserEntity>, Contracts.IOglasnikContext
     {
+        static OglasnikContext()
+        {
+            Database.SetInitializer(new Initializers.OglasnikDbInitializer());
+        }
+
         public OglasnikContext() : base("OglasnikDb")
         {
         }

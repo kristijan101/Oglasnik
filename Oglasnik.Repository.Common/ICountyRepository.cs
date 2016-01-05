@@ -9,12 +9,12 @@ namespace Oglasnik.Repository.Common
 {
     public interface ICountyRepository
     {
-        void Add(ICounty county);
-        void Delete(ICounty county);
-        void Delete(Guid id);
+        Task<bool> Add(ICounty county);
+        Task<bool> Delete(ICounty county);
+        Task<bool> Delete(Guid id);
         Task<IEnumerable<ICounty>> GetAllAsync();
         Task<ICounty> GetAsync(Guid id);
-        Task<int> SaveChanges();
-        void Update(ICounty county);
+        Task<IEnumerable<ICounty>> GetRangeAsync(Oglasnik.Common.IFilter filter);
+        Task<bool> Update(ICounty county);
     }
 }

@@ -29,11 +29,7 @@ namespace Oglasnik.WebAPI.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteLocation(Guid id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException();
-            }
-            if (await locationService.Delete(id) > 0)
+            if (await locationService.Delete(id))
             {
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
@@ -45,7 +41,7 @@ namespace Oglasnik.WebAPI.Controllers
 
         public async Task<HttpResponseMessage> GetAllLocations()
         {
-            IEnumerable<LocationVM> locations = Mapper.Map<IEnumerable<LocationVM>>(await locationService.GetAll());
+            IEnumerable<LocationModel> locations = Mapper.Map<IEnumerable<LocationModel>>(await locationService.GetAll());
 
             if (locations != null)
             {
@@ -59,7 +55,7 @@ namespace Oglasnik.WebAPI.Controllers
 
         public async Task<HttpResponseMessage> GetLocationById(Guid id)
         {
-            LocationVM location = Mapper.Map<LocationVM>(await locationService.GetById(id));
+            LocationModel location = Mapper.Map<LocationModel>(await locationService.GetById(id));
 
             if (location != null)
             {
@@ -71,9 +67,25 @@ namespace Oglasnik.WebAPI.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> PostLocation(LocationVM location)
+        public async Task<HttpResponseMessage> GetLocations(string search, int pageNum, int pageSize)
         {
-            if (ModelState.IsValid && await locationService.Add(Mapper.Map<ILocation>(location)) > 0)
+            IEnumerable<LocationModel> locations = Mapper.Map<IEnumerable<LocationModel>>(
+                await locationService.GetRange(new Common.DefaultFilter(search, pageNum, pageSize))
+                );
+
+            if (locations != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.Found, locations);
+            }
+            else
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+        }
+
+        public async Task<HttpResponseMessage> PostLocation(LocationModel location)
+        {
+            if (await locationService.Add(Mapper.Map<ILocation>(location)))
             {
                 return new HttpResponseMessage(HttpStatusCode.Created);
             }
@@ -84,9 +96,9 @@ namespace Oglasnik.WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> UpdateLocation(LocationVM location)
+        public async Task<HttpResponseMessage> UpdateLocation(LocationModel location)
         {
-            if (ModelState.IsValid && await locationService.Update(Mapper.Map<ILocation>(location)) > 0)
+            if (ModelState.IsValid && await locationService.Update(Mapper.Map<ILocation>(location)))
             {
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
@@ -95,6 +107,9 @@ namespace Oglasnik.WebAPI.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
         }
+        #endregion
     }
 }
-#endregion
+
+
+        

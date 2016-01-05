@@ -17,6 +17,7 @@ namespace Oglasnik.Repository
             Bind<IOglasnikContext>().To<OglasnikContext>();
             Bind<ILocationRepository>().To<LocationRepository>();
             Bind<ICountyRepository>().To<CountyRepository>();
+            Bind(typeof(IRepository<>)).To(typeof(Repository<>));
         }
     }
 }

@@ -68,17 +68,20 @@
   <ItemGroup>
     <Content Include="app\app.module.js" />
     <Content Include="app\components\county\county.edit.html" />
-    <Content Include="app\components\county\county.html" />
     <Content Include="app\components\county\county.list.html" />
+    <Content Include="app\components\county\countyAddController.js" />
     <Content Include="app\components\county\countyController.js" />
+    <Content Include="app\components\county\countyEditController.js" />
     <Content Include="app\components\county\countyService.js" />
-    <Content Include="app\components\location\location.create.html" />
-    <Content Include="app\components\location\location.html" />
+    <Content Include="app\components\location\location.add.html" />
     <Content Include="app\components\location\location.list.html" />
     <Content Include="app\components\location\location.edit.html" />
+    <Content Include="app\components\location\locationAddController.js" />
     <Content Include="app\components\location\locationController.js" />
+    <Content Include="app\components\location\locationEditController.js" />
     <Content Include="app\components\location\locationService.js" />
     <Content Include="app\shared\admin\admin.html" />
+    <Content Include="app\shared\constants\routes.js" />
     <Content Include="assets\css\bootstrap\bootstrap-theme.css" />
     <Content Include="assets\css\bootstrap\bootstrap-theme.min.css" />
     <Content Include="assets\css\bootstrap\bootstrap.css" />
@@ -96,7 +99,7 @@
     <Content Include="assets\css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\css\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="app\components\county\county.create.html" />
+    <Content Include="app\components\county\county.add.html" />
     <None Include="assets\lib\jQuery-1.9.1\jquery-1.9.1.intellisense.js" />
     <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\bootstrap.min.js" />

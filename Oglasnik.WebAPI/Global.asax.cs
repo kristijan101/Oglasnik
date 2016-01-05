@@ -1,5 +1,4 @@
-﻿using Oglasnik.DAL.Initializers;
-using Oglasnik.WebAPI.App_Start;
+﻿using Oglasnik.WebAPI.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,8 +12,7 @@ namespace Oglasnik.WebAPI
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
-        {
-            Database.SetInitializer(new OglasnikDbInitializer());
+        {            
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AutoMapperConfig.Initialize();
         }

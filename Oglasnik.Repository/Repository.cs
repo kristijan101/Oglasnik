@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Oglasnik.Common;
 using Oglasnik.DAL.Contracts;
 using System;
 using System.Collections.Generic;
@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace Oglasnik.Repository
 {
-    public class Repository<TEntity, TDomain> : Common.IRepository<TEntity,TDomain> where TEntity : class
-                                                                            where TDomain : class                                                                                                  
+    public class Repository<TEntity> : Common.IRepository<TEntity> where TEntity:class
     {
         #region Properties
 
-        private IOglasnikContext context;
+        protected IOglasnikContext Context { get; private set; }       
 
-        protected DbSet<TEntity> Entities {
+        protected DbSet<TEntity> Entities
+        {
             get
             {
-                return context.Set<TEntity>();
+                return Context.Set<TEntity>();
             }
         }
 
@@ -31,54 +31,72 @@ namespace Oglasnik.Repository
 
         public Repository(IOglasnikContext context)
         {
-            this.context = context;
+            Context = context;
         }
 
         #endregion
 
         #region Methods
-
-        public virtual void Add(TDomain county)
+        
+        public async Task<bool> AddAsync(TEntity entity)
         {
-            Entities.Add(Mapper.Map<TEntity>(county));
+            if(entity == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            Entities.Add(entity);
+
+            return (await Context.SaveChangesAsync() != 0);
         }
 
-        public virtual void Delete(TDomain county)
+        public async Task<bool> DeleteAsync(TEntity entity)
         {
-            Entities.Remove(Mapper.Map<TEntity>(county));
+            if(entity == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            DbEntityEntry<TEntity> entry = Context.Entry(entity);
+
+            if(entry.State == EntityState.Detached)
+            {
+                Context.Set<TEntity>().Attach(entity);
+            }
+            entry.State = EntityState.Deleted;
+
+            return (await Context.SaveChangesAsync() != 0);
         }
 
-        public virtual async Task<IEnumerable<TDomain>> GetAllAsync()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Entities as IQueryable</returns>
+        public IQueryable<TEntity> GetAll()
         {
-            return Mapper.Map<IEnumerable<TDomain>>(await Entities.ToListAsync());
-        }
-
-        public virtual async Task<TDomain> GetAsync(Guid id)
-        {
-            return Mapper.Map<TDomain>(await Entities.FindAsync(id));
-        }
-
-        public virtual async Task<TDomain> GetAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            return Mapper.Map<TDomain>(await Entities.FirstAsync(predicate));
+            return Entities;
         }
         
-        public virtual Task<int> SaveChanges()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Primary key value for the entity to be found</param>
+        /// <returns>The requested entity or null if not found</returns>
+        public Task<TEntity> GetById(Guid id)
         {
-            return context.SaveChangesAsync();
-        }      
-
-        public virtual void Update(TDomain county)
+            return Entities.FindAsync(id);
+        }
+    
+        public async Task<bool> UpdateAsync(TEntity entity)
         {
-            TEntity entity = Mapper.Map<TEntity>(county);
-
-            DbEntityEntry entry = context.Entry(entity);
-
-            if (entry.State == EntityState.Detached)
+            if(entity == null)
             {
-                Entities.Attach(entity);
+                throw new ArgumentNullException();
             }
-            entry.State = EntityState.Modified;
+
+            Context.Entry(entity).State = EntityState.Modified;
+
+            return (await Context.SaveChangesAsync() != 0);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using Oglasnik.Model.Common;
+﻿using Oglasnik.Common;
+using Oglasnik.Model.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ namespace Oglasnik.Repository.Common
 {
     public interface ILocationRepository
     {
-        void Add(ILocation county);
-        void Delete(ILocation county);
-        void Delete(Guid id);
+        Task<bool> Add(ILocation county);
+        Task<bool> Delete(ILocation county);
+        Task<bool> Delete(Guid id);
         Task<IEnumerable<ILocation>> GetAllAsync();
         Task<ILocation> GetAsync(Guid id);
-        Task<int> SaveChanges();
-        void Update(ILocation county);
+        Task<IEnumerable<ILocation>> GetRangeAsync(IFilter filter);
+        Task<bool> Update(ILocation county);
     }
 }

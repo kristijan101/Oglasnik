@@ -13,3 +13,8 @@ C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repos
 C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\EntityFramework.xml
 C:\Users\Kristijan\documents\visual studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Oglasnik.Repository.Common.dll.config
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Oglasnik.Common.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\Oglasnik.Common.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository.Common\bin\Debug\EntityFramework.SqlServer.xml

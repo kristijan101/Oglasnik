@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Oglasnik.Common;
 using Oglasnik.Model.Common;
 using Oglasnik.Services.Common;
 using Oglasnik.WebAPI.Models;
@@ -30,11 +31,7 @@ namespace Oglasnik.WebAPI.Controllers
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteCounty(Guid id)
         {
-            if(id == null)
-            {
-                throw new ArgumentNullException();
-            }
-            if(await countyService.Delete(id) > 0)
+            if(await countyService.Delete(id))
             {
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
@@ -46,7 +43,7 @@ namespace Oglasnik.WebAPI.Controllers
 
         public async Task<HttpResponseMessage> GetAllCounties()
         {
-            IEnumerable<CountyVM> counties = Mapper.Map<IEnumerable<CountyVM>>(await countyService.GetAll());
+            IEnumerable<CountyModel> counties = Mapper.Map<IEnumerable<CountyModel>>(await countyService.GetAll());
             
             if(counties != null)
             {
@@ -58,9 +55,25 @@ namespace Oglasnik.WebAPI.Controllers
             }
         }
 
+        public async Task<HttpResponseMessage> GetCounties(string search, int pageNum, int pageSize)
+        {
+            IEnumerable<CountyModel> counties = Mapper.Map<IEnumerable<CountyModel>>(
+                await countyService.GetRange(new DefaultFilter(search, pageNum, pageSize))
+                );
+
+            if(counties != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.Found, counties);
+            }
+            else
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+        }
+
         public async Task<HttpResponseMessage> GetCountyById(Guid id)
         {
-            CountyVM county = Mapper.Map<CountyVM>(await countyService.GetById(id));
+            CountyModel county = Mapper.Map<CountyModel>(await countyService.GetById(id));
 
             if (county != null)
             {
@@ -72,9 +85,9 @@ namespace Oglasnik.WebAPI.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> PostCounty(CountyVM county)
+        public async Task<HttpResponseMessage> PostCounty(CountyModel county)
         {
-            if (ModelState.IsValid && await countyService.Add(Mapper.Map<ICounty>(county)) > 0)
+            if (await countyService.Add(Mapper.Map<ICounty>(county)))
             {
                 return new HttpResponseMessage(HttpStatusCode.Created);
             }
@@ -85,9 +98,9 @@ namespace Oglasnik.WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> UpdateCounty(CountyVM county)
+        public async Task<HttpResponseMessage> UpdateCounty(CountyModel county)
         {
-            if(ModelState.IsValid && await countyService.Update(Mapper.Map<ICounty>(county)) > 0)
+            if(ModelState.IsValid && await countyService.Update(Mapper.Map<ICounty>(county)))
             {
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }

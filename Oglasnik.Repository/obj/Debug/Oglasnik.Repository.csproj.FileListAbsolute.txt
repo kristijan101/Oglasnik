@@ -22,3 +22,5 @@ C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repos
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Repository.Common.dll
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Repository.Common.pdb
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Ninject.xml
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Common.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Repository\bin\Debug\Oglasnik.Common.pdb

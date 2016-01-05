@@ -1,22 +1,42 @@
 ﻿(function () {
-    angular.module("app").factory("countyService", ["$http", countyService]);
+    angular.module("app").factory("countyService", ["$http", "ROUTE", CountyService]);
 
-    function countyService($http) {
+    function CountyService($http, route) {
+        var _counties = [];
+
         return {
-            addCounty: function (county) {
-                return $http.post("http://localhost:51102/api/county", county );
+            addCounty: function(county) {
+                    return $http.post(route.COUNTY, county);
             },
+            counties: _counties,
             deleteCounty: function (id) {
-                return $http.delete("http://localhost:51102/api/county?id="+id);
+                return $http.delete(route.COUNTY + "?id="+id);
             },
-            getCounties: function () {
-                return $http.get("http://localhost:51102/api/county");
+            getAll: function () {
+                return $http.get(route.COUNTY).then(
+                    function (response) {
+                        _counties = response.data;
+                        return _counties;
+                    }
+                    );
             },
-            sortCounties: function (a) {
+            getById: function(id){
+                for (var i in _counties) {
+                    if (_counties[i].Id === id) {
+                        return _counties[i];
+                    }
+                }
+                return $http.get(route.COUNTY + "?id=" + id).then(
+                    function (response) {
+                        return response.data;
+                    }
+                );
+            },
+            sortByName: function(a) {
                 if (!$.isArray(a)) {
                     return
                 }
-                return a.sort(function (a, b) {
+                return a.sort(function(a, b) {
                     if (a.Name < b.Name) {
                         return -1;
                     }
@@ -27,8 +47,8 @@
                 })
             },
             updateCounty: function (county) {
-                return $http.put("http://localhost:51102/api/county", county);
+                return $http.put(route.COUNTY, county);
             }
-        }
+        }        
     }
 })();

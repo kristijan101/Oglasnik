@@ -1,65 +1,23 @@
 ﻿(function () {
-    angular.module("app").controller("CountyController", ["$state","countyService", "locationService", CountyController]);
+    angular
+        .module("app")
+        .controller("CountyController", ["$state", "countyService", "counties", "locationService", CountyController]);
 
-    function CountyController($state, countyService, locationService) {
+    function CountyController($state, countyService, counties, locationService) {
         var vm = this;
-        vm.add = add;
-        vm.cancel = cancel;
-        vm.county = resetCountyObj();
-        vm.data = [];
+        
+        vm.counties = counties;
         vm.delete = deleteCounty;        
-        vm.edit = editForm;
-        vm.locToString = locationsToString;
-        vm.update = update;
- 
-        getCounties();
+        vm.locToString = locationsToString;     
 
-        function add(county) {
-            countyService.addCounty(county).then(function (response) {
-                $state.go("admin.county.list");
-                getCounties();
-                resetCountyObj();                
-            });
-        }
-
-        function cancel() {
-            $state.go("admin.county.list");
-        }
-
-        function deleteCounty(id){
+        function deleteCounty(id, index){
             countyService.deleteCounty(id).then(function(response){
-                getCounties();
-            })
-        }
-        //prepares form for editing the selected county
-        function editForm(idx) {
-            var entry = vm.data[idx];
-            for(var p in entry){
-                vm.county[p] = entry[p];
-            }
-        }
-
-        function getCounties() {
-            countyService.getCounties().then(function (response) {
-                var data = response.data;
-                vm.data = countyService.sortCounties(data);               
+                vm.counties.splice(index, 1);
             })
         }
 
         function locationsToString(a) {
             return locationService.toString(a);
-        }
-
-        function resetCountyObj() {
-            return vm.county = { "Id": "", "Name": "", "Locations": [] };
-        }
-
-        function update(county) {
-            countyService.updateCounty(county).then(function (r) {
-                $state.go("admin.county.list");
-                getCounties();
-                resetCountyObj();
-            })
-        }
+        }       
     }
 })();

@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Oglasnik.Common\Oglasnik.Common.csproj">
+      <Project>{2a4075a6-3860-4978-8643-96a073a6ab1a}</Project>
+      <Name>Oglasnik.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oglasnik.Model.Common\Oglasnik.Model.Common.csproj">
       <Project>{dbb129ee-37aa-449d-9034-5561b4b66b18}</Project>
       <Name>Oglasnik.Model.Common</Name>

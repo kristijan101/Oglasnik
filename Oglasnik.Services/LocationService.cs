@@ -1,4 +1,5 @@
-﻿using Oglasnik.Model.Common;
+﻿using Oglasnik.Common;
+using Oglasnik.Model.Common;
 using Oglasnik.Repository.Common;
 using Oglasnik.Services.Common;
 using System;
@@ -20,38 +21,44 @@ namespace Oglasnik.Services
 
         #region Methods
 
-        public virtual Task<int> Add(ILocation county)
+        public Task<bool> Add(ILocation county)
         {
-            repository.Add(county);
-            return repository.SaveChanges();
+            return repository.Add(county);
         }
 
-        public virtual Task<int> Delete(ILocation county)
+        public Task<bool> Delete(ILocation county)
         {
-            repository.Delete(county);
-            return repository.SaveChanges();
+            return repository.Delete(county);
         }
 
-        public virtual Task<int> Delete(Guid id)
+        public Task<bool> Delete(Guid id)
         {
-            repository.Delete(id);
-            return repository.SaveChanges();
+            return repository.Delete(id);
         }
 
-        public virtual Task<IEnumerable<ILocation>> GetAll()
+        public Task<IEnumerable<ILocation>> GetAll()
         {
             return repository.GetAllAsync();
         }
 
-        public virtual Task<ILocation> GetById(Guid id)
+        public Task<ILocation> GetById(Guid id)
         {
             return repository.GetAsync(id);
         }
 
-        public virtual Task<int> Update(ILocation county)
+        public Task<IEnumerable<ILocation>> GetRange(IFilter filter)
         {
-            repository.Update(county);
-            return repository.SaveChanges();
+            if (filter == null)
+            {
+                throw new ArgumentNullException("filter");
+            }
+
+            return repository.GetRangeAsync(filter);
+        }
+
+        public Task<bool> Update(ILocation county)
+        {
+            return repository.Update(county);
         }
 
         #endregion

@@ -9,11 +9,12 @@ namespace Oglasnik.Services.Common
 {
     public interface ILocationService
     {
-        Task<int> Add(ILocation cty);
-        Task<int> Delete(ILocation county);
-        Task<int> Delete(Guid id);
+        Task<bool> Add(ILocation county);
+        Task<bool> Delete(ILocation county);
+        Task<bool> Delete(Guid id);
         Task<IEnumerable<ILocation>> GetAll();
         Task<ILocation> GetById(Guid id);
-        Task<int> Update(ILocation county);
+        Task<IEnumerable<ILocation>> GetRange(Oglasnik.Common.IFilter filter);
+        Task<bool> Update(ILocation county);
     }
 }
