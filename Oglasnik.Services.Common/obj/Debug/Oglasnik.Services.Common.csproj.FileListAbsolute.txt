@@ -1,9 +1,9 @@
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\bin\Debug\Oglasnik.Services.Common.dll
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\bin\Debug\Oglasnik.Services.Common.pdb
-C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\obj\Debug\Oglasnik.Services.Common.dll
-C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\obj\Debug\Oglasnik.Services.Common.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\bin\Debug\Oglasnik.Common.dll
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\bin\Debug\Oglasnik.Model.Common.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\bin\Debug\Oglasnik.Common.pdb
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\bin\Debug\Oglasnik.Model.Common.pdb
 C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\obj\Debug\Oglasnik.Services.Common.csprojResolveAssemblyReference.cache
-C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\bin\Debug\Oglasnik.Common.dll
-C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\bin\Debug\Oglasnik.Common.pdb
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\obj\Debug\Oglasnik.Services.Common.dll
+C:\Users\Kristijan\Documents\Visual Studio 2015\Projects\Oglasnik\Oglasnik.Services.Common\obj\Debug\Oglasnik.Services.Common.pdb

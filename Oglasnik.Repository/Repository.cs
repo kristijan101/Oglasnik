@@ -1,34 +1,30 @@
-﻿using Oglasnik.Common;
-using Oglasnik.DAL.Contracts;
+﻿using Oglasnik.DAL.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Oglasnik.Repository
 {
-    public class Repository<TEntity> : Common.IRepository<TEntity> where TEntity:class
+    public class Repository : Common.IRepository
     {
         #region Properties
 
+        /// <summary>
+        /// Stores a database context instance of type IOglasnikContext
+        /// </summary>
+        /// <value>Gets/sets context of type IOglasnikContext</value>
         protected IOglasnikContext Context { get; private set; }       
-
-        protected DbSet<TEntity> Entities
-        {
-            get
-            {
-                return Context.Set<TEntity>();
-            }
-        }
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// The class constructor.
+        /// </summary>
+        /// <param name="context">Instance of a type that implements IOglasnikContext.</param>
         public Repository(IOglasnikContext context)
         {
             Context = context;
@@ -37,20 +33,32 @@ namespace Oglasnik.Repository
         #endregion
 
         #region Methods
-        
-        public async Task<bool> AddAsync(TEntity entity)
+
+        /// <summary>
+        /// Adds an entity of type TEntity
+        /// </summary>
+        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
+        /// <param name="entity">Entity of type TEntity</param>
+        /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
+        public async Task<bool> AddAsync<TEntity>(TEntity entity) where TEntity : class
         {
             if(entity == null)
             {
                 throw new ArgumentNullException();
             }
 
-            Entities.Add(entity);
+            Context.Set<TEntity>().Add(entity);
 
             return (await Context.SaveChangesAsync() != 0);
         }
 
-        public async Task<bool> DeleteAsync(TEntity entity)
+        /// <summary>
+        /// Deletes an entity of type TEntity.
+        /// </summary>
+        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
+        /// <param name="entity">Entity of type TEntity</param>
+        /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
+        public async Task<bool> DeleteAsync<TEntity>(TEntity entity) where TEntity : class
         {
             if(entity == null)
             {
@@ -69,25 +77,32 @@ namespace Oglasnik.Repository
         }
 
         /// <summary>
-        /// 
+        /// Gets all entities of the given type.
         /// </summary>
-        /// <returns>Entities as IQueryable</returns>
-        public IQueryable<TEntity> GetAll()
+        /// <returns><see cref="IQueryable{TEntity}"/></returns>
+        public IQueryable<TEntity> GetAll<TEntity>() where TEntity : class
         {
-            return Entities;
+            return Context.Set<TEntity>();
         }
         
         /// <summary>
-        /// 
+        /// Gets the entity with the given Id.
         /// </summary>
-        /// <param name="id">Primary key value for the entity to be found</param>
+        /// <param name="id">Id of type <see cref="Guid"/> of the entity to be found.</param>
         /// <returns>The requested entity or null if not found</returns>
-        public Task<TEntity> GetById(Guid id)
+        public Task<TEntity> GetById<TEntity>(Guid id) where TEntity : class
         {
-            return Entities.FindAsync(id);
+            return Context.Set<TEntity>().FindAsync(id);
         }
-    
-        public async Task<bool> UpdateAsync(TEntity entity)
+
+
+        /// <summary>
+        /// Updates an entity of type TEntity.
+        /// </summary>
+        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
+        /// <param name="entity">Entity of type TEntity</param>
+        /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
+        public async Task<bool> UpdateAsync<TEntity>(TEntity entity) where TEntity : class
         {
             if(entity == null)
             {

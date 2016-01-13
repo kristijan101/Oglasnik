@@ -40,8 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultFilter.cs" />
-    <Compile Include="IFilter.cs" />
+    <Compile Include="CountySortingParameters.cs" />
+    <Compile Include="Filters\Filter.cs" />
+    <Compile Include="Filters\IFilter.cs" />
+    <Compile Include="IPagingParameters.cs" />
+    <Compile Include="ISortingParameters.cs" />
+    <Compile Include="LocationSortingParameters.cs" />
+    <Compile Include="PagingParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
