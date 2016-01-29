@@ -10,6 +10,10 @@ namespace Oglasnik.DAL.Initializers
 {
     public class OglasnikDbInitializer : DropCreateDatabaseAlways<OglasnikContext>
     {
+        /// <summary>
+        /// Adds data to the context for seeding.
+        /// </summary>
+        /// <param name="context">The context to seed.</param>
         protected override void Seed(OglasnikContext context)
         {
             Guid bp = Guid.NewGuid();

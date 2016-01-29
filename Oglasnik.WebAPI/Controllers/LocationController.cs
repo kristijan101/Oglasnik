@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Oglasnik.Common;
-using Oglasnik.Common.Filters;
 using Oglasnik.Model.Common;
 using Oglasnik.Services.Common;
 using Oglasnik.WebAPI.Models;
@@ -17,14 +16,22 @@ namespace Oglasnik.WebAPI.Controllers
     [RoutePrefix("api/location")]
     public class LocationController : ApiController
     {
-        private ILocationService locationService;
+        #region Fields
+
+        /// <summary>
+        /// Store for the location service
+        /// </summary>
+        private readonly ILocationService locationService;
+
+        #endregion
 
         #region Constructor
 
+
         /// <summary>
-        /// The class constructor method.
+        /// Initializes a new instance of the <see cref="LocationController"/> class.
         /// </summary>
-        /// <param name="service">An instance of a service of type ILocationService.</param>
+        /// <param name="service">The service of type <see cref="ILocationService"/>.</param>
         public LocationController(ILocationService service)
         {
             locationService = service;
@@ -34,14 +41,15 @@ namespace Oglasnik.WebAPI.Controllers
         #region Methods
 
         /// <summary>
-        /// Processes a request to delete a location.
+        /// Deletes a location.
         /// </summary>
-        /// <param name="id">The Id of a location to be deleted.</param>
+        /// <param name="id">The identifier of the location to be deleted.</param>
         /// <returns></returns>
+        [Route("{id}")]
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteLocation(Guid id)
+        public async Task<HttpResponseMessage> Delete(Guid id)
         {
-            if (await locationService.Delete(id))
+            if (await locationService.DeleteAsync(id))
             {
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
@@ -51,9 +59,53 @@ namespace Oglasnik.WebAPI.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> GetAllLocations()
+        /// <summary>
+        /// Gets the location with the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        [Route("{id}")]
+        public async Task<HttpResponseMessage> Get(Guid id)
         {
-            IEnumerable<LocationModel> locations = Mapper.Map<IEnumerable<LocationModel>>(await locationService.GetAll());
+            LocationModel location = Mapper.Map<LocationModel>(await locationService.GetAsync(id));
+
+            if (location != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, location);
+            }
+            else
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+        }
+
+        /// <summary>
+        /// Gets a collection of locations that meet the criteria.
+        /// </summary>
+        /// <param name="q">The search query.</param>
+        /// <param name="page">Page number</param>
+        /// <param name="size">Page size, max. amount of results returned</param>
+        /// <param name="sort">Order by field</param>
+        /// <param name="asc">Ascending sort direction</param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> Get(string q = "", int page = 1, int size = 20, string sort = "", bool asc = true)
+        {
+            IFilter filter = string.IsNullOrWhiteSpace(q) ? null : new Filter(q);
+            ISortingParameters sortParams = null;
+
+            if (!string.IsNullOrWhiteSpace(sort))
+            {
+                sortParams = new SortingParameters(
+                                new List<ISortingPair>()
+                                {
+                                    new SortingPair(sort, asc)
+                                }
+                             );
+            }
+
+            IEnumerable<LocationModel> locations = Mapper.Map<IEnumerable<LocationModel>>(
+                await locationService.GetAsync(new PagingParameters(page, size), sortParams, filter)
+                );
 
             if (locations != null)
             {
@@ -61,61 +113,18 @@ namespace Oglasnik.WebAPI.Controllers
             }
             else
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-        }
-
-        public async Task<HttpResponseMessage> GetLocationById(Guid id)
-        {
-            LocationModel location = Mapper.Map<LocationModel>(await locationService.GetById(id));
-
-            if (location != null)
-            {
-                return Request.CreateResponse(HttpStatusCode.Found, location);
-            }
-            else
-            {
                 return new HttpResponseMessage(HttpStatusCode.NotFound);
             }
         }
 
-        [Route("search/{page:int}")]
-        public async Task<HttpResponseMessage> GetLocations(string search, int page, int size = 10)
+        /// <summary>
+        /// Creates a new location.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> Post(LocationModel location)
         {
-            IEnumerable<LocationModel> locations = Mapper.Map<IEnumerable<LocationModel>>(
-                await locationService.GetRange(new Filter(search), new PagingParameters(page, size))
-                );
-
-            if (locations != null)
-            {
-                return Request.CreateResponse(HttpStatusCode.Found, locations);
-            }
-            else
-            {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
-            }
-        }
-
-        [Route("{page:int}")]
-        public async Task<HttpResponseMessage> GetLocations(int page, string sort = "", string dir = "", int size = 10)
-        {
-            IEnumerable<LocationModel> locations = Mapper.Map<IEnumerable<LocationModel>>(
-                await locationService.GetRange(new PagingParameters(page, size), new LocationSortingParameters(sort, dir))
-                );
-
-            if (locations != null)
-            {
-                return Request.CreateResponse(HttpStatusCode.Found, locations);
-            }
-            else
-            {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
-            }
-        }
-
-        public async Task<HttpResponseMessage> PostLocation(LocationModel location)
-        {
-            if (await locationService.Add(Mapper.Map<ILocation>(location)))
+            if (await locationService.AddAsync(Mapper.Map<ILocation>(location)))
             {
                 return new HttpResponseMessage(HttpStatusCode.Created);
             }
@@ -125,10 +134,15 @@ namespace Oglasnik.WebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates the specified location.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <returns></returns>
         [HttpPut]
-        public async Task<HttpResponseMessage> UpdateLocation(LocationModel location)
+        public async Task<HttpResponseMessage> Put(LocationModel location)
         {
-            if (ModelState.IsValid && await locationService.Update(Mapper.Map<ILocation>(location)))
+            if (ModelState.IsValid && await locationService.UpdateAsync(Mapper.Map<ILocation>(location)))
             {
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }

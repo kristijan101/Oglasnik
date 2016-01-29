@@ -12,131 +12,97 @@ namespace Oglasnik.Services
 {
     public class LocationService : ILocationService
     {
-        private ILocationRepository repository;
+        #region Fields
 
         /// <summary>
-        /// The class constructor method.
+        /// Store for the <see cref="ILocationRepository"/> repository.
         /// </summary>
-        /// <param name="repository">Instance of ILocationRepository type.</param>
+        private readonly ILocationRepository repository;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LocationService"/> class.
+        /// </summary>
+        /// <param name="repository">The repository.</param>
         public LocationService(ILocationRepository repository)
         {
             this.repository = repository;
         }
 
+        #endregion
+
         #region Methods
 
         /// <summary>
-        /// Adds a location to the repository.
+        /// Asynchronously adds a location to the repository.
         /// </summary>
         /// <param name="location">The location instance to be added.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Add(ILocation location)
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="location"/> is null.</exception>
+        public Task<bool> AddAsync(ILocation location)
         {
-            return repository.Add(location);
+            if(location == null)
+            {
+                throw new ArgumentNullException("location");
+            }
+
+            return repository.AddAsync(location);
         }
 
         /// <summary>
-        /// Deletes a location from the repository.
-        /// </summary>
-        /// <param name="location">The location instance to be deleted.</param>
-        /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Delete(ILocation location)
-        {
-            return repository.Delete(location);
-        }
-
-        /// <summary>
-        /// Deletes a location with the given Id.
+        /// Asynchronously deletes a location with the given Id.
         /// </summary>
         /// <param name="id">Id of the location to be deleted.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Delete(Guid id)
+        public Task<bool> DeleteAsync(Guid id)
         {
-            return repository.Delete(id);
+            return repository.DeleteAsync(id);
         }
 
         /// <summary>
-        /// Gets all locations from the repository.
-        /// </summary>
-        /// <returns></returns>
-        public Task<IEnumerable<ILocation>> GetAll()
-        {
-            return repository.GetAllAsync();
-        }
-
-        /// <summary>
-        /// Gets the location with the specified Id.
+        /// Asynchronously gets the location with the specified Id.
         /// </summary>
         /// <param name="id">Id (of type <see cref="Guid"/>) of the location.</param>
         /// <returns>Returns the location requested or null if not found.</returns>
-        public Task<ILocation> GetById(Guid id)
+        public Task<ILocation> GetAsync(Guid id)
         {
             return repository.GetAsync(id);
         }
 
         /// <summary>
-        /// Gets a range of locations which names contain the string given by the filter object.
+        /// Asynchronously gets a range of locations which names contain the string given by the filter object.
         /// </summary>
         /// <param name="filter">Filter instance of type IFilter</param>
         /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
+        /// <param name="sorting">Sorting options</param>
         /// <returns>Returns <see cref="Task{IEnumerable{ILocation}}"/></returns>
-        public Task<IEnumerable<ILocation>> GetRange(IFilter filter, IPagingParameters paging)
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="paging"/> is null.</exception>
+        public Task<IEnumerable<ILocation>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException("filter");
-            }
             if(paging == null)
             {
                 throw new ArgumentNullException("paging");
             }
 
-            return repository.GetRangeAsync(filter, paging);
+            return repository.GetAsync(paging, sorting, filter);
         }
 
         /// <summary>
-        /// Gets a range of locations.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ILocation}}"/></returns>
-        public Task<IEnumerable<ILocation>> GetRange(IPagingParameters paging)
-        {
-            if (paging == null)
-            {
-                throw new ArgumentNullException("paging");
-            }
-
-            return repository.GetRangeAsync(paging);
-        }
-
-        /// <summary>
-        /// Gets a sorted range of locations.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <param name="sorting">A class instance that implements <see cref="ISortingParameters"/>, holds sorting options.</param>
-        /// <returns></returns>
-        public Task<IEnumerable<ILocation>> GetRange(IPagingParameters paging, ISortingParameters sorting)
-        {
-            if (paging == null)
-            {
-                throw new ArgumentNullException("paging");
-            }
-            if (sorting == null)
-            {
-                throw new ArgumentNullException("sorting");
-            }
-
-            return repository.GetRangeAsync(paging, sorting);
-        }
-
-        /// <summary>
-        /// Updates a location.
+        /// Asynchronously updates a location.
         /// </summary>
         /// <param name="location">The location to be updated.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Update(ILocation location)
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="location"/> is null.</exception>
+        public Task<bool> UpdateAsync(ILocation location)
         {
-            return repository.Update(location);
+            if(location == null)
+            {
+                throw new ArgumentNullException("location");
+            }
+            return repository.UpdateAsync(location);
         }
 
         #endregion

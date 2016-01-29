@@ -4,154 +4,104 @@ using Oglasnik.Repository.Common;
 using Oglasnik.Services.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Oglasnik.Services
 {
     public class CountyService : ICountyService
     {
-        private ICountyRepository repository;
+        #region Fields
 
         /// <summary>
-        /// The class constructor method.
+        /// Store for the <see cref="ICountyRepository"/> repository.
         /// </summary>
-        /// <param name="repository">Instance of ICountyRepository type.</param>
+        private readonly ICountyRepository repository;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CountyService"/> class with an <see cref="ICountyRepository"/> instance.
+        /// </summary>
+        /// <param name="repository">The repository.</param>
         public CountyService(ICountyRepository repository)
         {
             this.repository = repository;
         }
 
+        #endregion
+
         #region Methods
 
         /// <summary>
-        /// Adds a county to the repository.
+        /// Asynchronously adds a county to the repository.
         /// </summary>
-        /// <param name="county">The county instance to be added.</param>
+        /// <param name="county">The county to be added.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Add(ICounty county)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="county"/> is null.</exception>
+        public Task<bool> AddAsync(ICounty county)
         {
             if (county == null)
             {
                 throw new ArgumentNullException("county");
             }
 
-            return repository.Add(county);
+            return repository.AddAsync(county);
         }
 
         /// <summary>
-        /// Deletes a county from the repository.
-        /// </summary>
-        /// <param name="county">The county instance to be deleted.</param>
-        /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Delete(ICounty county)
-        {
-            if (county == null)
-            {
-                throw new ArgumentNullException("county");
-            }
-
-            return repository.Delete(county);
-        }
-
-        /// <summary>
-        /// Deletes a county with the given Id.
+        /// Asynchronously deletes a county with the given Id.
         /// </summary>
         /// <param name="id">Id of the county to be deleted.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Delete(Guid id)
+        public Task<bool> DeleteAsync(Guid id)
         {
-            return repository.Delete(id);
+            return repository.DeleteAsync(id);
         }
 
         /// <summary>
-        /// Gets all counties from the repository.
-        /// </summary>
-        /// <returns></returns>
-        public Task<IEnumerable<ICounty>> GetAll()
-        {
-            return repository.GetAllAsync();
-        }
-
-        /// <summary>
-        /// Gets the county with the specified Id.
+        /// Asynchronously gets the county with the specified Id.
         /// </summary>
         /// <param name="id">Id (of type <see cref="Guid"/>) of the county.</param>
         /// <returns>Returns the county requested or null if not found.</returns>
-        public Task<ICounty> GetById(Guid id)
+        public Task<ICounty> GetAsync(Guid id)
         {
             return repository.GetAsync(id);
         }
 
         /// <summary>
-        /// Gets a range of counties according to the applied filter.
+        /// Asynchronously gets a range of counties, sorted according to the sorting options provided. An optional filter can also be applied.
         /// </summary>
-        /// <param name="filter">Filter instance of type IFilter.</param>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
+        /// <param name="filter">Instance of type <see cref="IFilter"/>.</param>
+        /// <param name="paging">An instance of type <see cref="IPagingParameters"/>, holds paging data.</param>
+        /// <param name="sorting">Sorting options</param>
         /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/>.</returns>
-        public Task<IEnumerable<ICounty>> GetRange(IFilter filter, IPagingParameters paging)
-        {
-            if(filter == null)
-            {
-                throw new ArgumentNullException("filter");
-            }
-            if(paging == null)
-            {
-                throw new ArgumentNullException("paging");
-            }
-            
-            return repository.GetRangeAsync(filter, paging);
-        }
-
-        /// <summary>
-        /// Gets a range of counties.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        public Task<IEnumerable<ICounty>> GetRange(IPagingParameters paging)
-        {
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="paging"/> is null.</exception>
+        public Task<IEnumerable<ICounty>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
+        {          
             if (paging == null)
             {
                 throw new ArgumentNullException("paging");
             }
 
-            return repository.GetRangeAsync(paging);
+            return repository.GetAsync(paging, sorting, filter);
         }
 
         /// <summary>
-        /// Gets a sorted range of counties.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <param name="sorting">A class instance that implements <see cref="ISortingParameters"/>, holds sorting options.</param>
-        /// <returns></returns>
-        public Task<IEnumerable<ICounty>> GetRange(IPagingParameters paging, ISortingParameters sorting)
-        {
-            if (paging == null)
-            {
-                throw new ArgumentNullException("paging");
-            }
-            if (sorting == null)
-            {
-                throw new ArgumentNullException("sorting");
-            }
-
-            return repository.GetRangeAsync(paging, sorting);
-        }
-
-        /// <summary>
-        /// Updates a county.
+        /// Asynchronously updates a county.
         /// </summary>
         /// <param name="county">The county to be updated.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Update(ICounty county)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="county"/> is null.</exception>
+        public Task<bool> UpdateAsync(ICounty county)
         {
             if(county == null)
             {
                 throw new ArgumentNullException("county");
             }
 
-            return repository.Update(county);
+            return repository.UpdateAsync(county);
         }
 
         #endregion

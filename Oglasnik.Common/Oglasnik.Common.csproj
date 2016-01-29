@@ -40,14 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CountySortingParameters.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\IFilter.cs" />
-    <Compile Include="IPagingParameters.cs" />
-    <Compile Include="ISortingParameters.cs" />
-    <Compile Include="LocationSortingParameters.cs" />
-    <Compile Include="PagingParameters.cs" />
+    <Compile Include="Paging\IPagingParameters.cs" />
+    <Compile Include="Sorting\ISortingPair.cs" />
+    <Compile Include="Sorting\ISortingParameters.cs" />
+    <Compile Include="Paging\PagingParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sorting\SortingPair.cs" />
+    <Compile Include="Sorting\SortingParameters.cs" />
+    <Compile Include="Sorting\SortingParametersExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

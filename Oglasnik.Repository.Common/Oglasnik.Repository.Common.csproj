@@ -49,9 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CountyRepositoryExtensions.cs" />
     <Compile Include="ICountyRepository.cs" />
     <Compile Include="ILocationRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="LocationRepositoryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

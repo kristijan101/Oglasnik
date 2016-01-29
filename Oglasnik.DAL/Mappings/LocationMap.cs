@@ -11,6 +11,9 @@ namespace Oglasnik.DAL.Mappings
 {
     class LocationMap : EntityTypeConfiguration<LocationEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LocationMap"/> class.
+        /// </summary>
         internal LocationMap()
         {
             HasKey(p => p.Id);

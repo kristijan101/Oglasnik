@@ -13,18 +13,18 @@ namespace Oglasnik.Repository.Common
     public interface IRepository
     {
         /// <summary>
-        /// Adds an entity of type TEntity
+        /// Asynchronously adds an entity of type <typeparamref name="TEntity"/>
         /// </summary>
-        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
-        /// <param name="entity">Entity of type TEntity</param>
+        /// <typeparam name="TEntity">Type of the entity to be added.</typeparam>
+        /// <param name="entity">The entity</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
         Task<bool> AddAsync<TEntity>(TEntity county) where TEntity : class;
 
         /// <summary>
-        /// Deletes an entity of type TEntity.
+        /// Asynchronously deletes an entity of type <typeparamref name="TEntity"/>.
         /// </summary>
-        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
-        /// <param name="entity">Entity of type TEntity</param>
+        /// <typeparam name="TEntity">The type of the entity to be added.</typeparam>
+        /// <param name="entity">The entity</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
         Task<bool> DeleteAsync<TEntity>(TEntity county) where TEntity : class;
 
@@ -35,17 +35,17 @@ namespace Oglasnik.Repository.Common
         IQueryable<TEntity> GetAll<TEntity>() where TEntity : class;
 
         /// <summary>
-        /// Gets the entity with the given Id.
+        /// Asynchronously gets the entity with the given Id.
         /// </summary>
-        /// <param name="id">Id of type <see cref="Guid"/> of the entity to be found.</param>
+        /// <param name="id">Id of the entity to be found.</param>
         /// <returns>The requested entity or null if not found</returns>
-        Task<TEntity> GetById<TEntity>(Guid id) where TEntity : class;
+        Task<TEntity> GetAsync<TEntity>(Guid id) where TEntity : class;
 
         /// <summary>
-        /// Updates an entity of type TEntity.
+        /// Asynchronously updates an entity of type <typeparamref name="TEntity"/>.
         /// </summary>
-        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
-        /// <param name="entity">Entity of type TEntity</param>
+        /// <typeparam name="TEntity">The type of the entity to be added.</typeparam>
+        /// <param name="entity">The entity</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
         Task<bool> UpdateAsync<TEntity>(TEntity county) where TEntity : class;
     }

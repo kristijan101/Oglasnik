@@ -11,67 +11,40 @@ namespace Oglasnik.Repository.Common
     public interface ICountyRepository
     {
         /// <summary>
-        /// Adds a county of type ICounty.
+        /// Asynchronously adds a county.
         /// </summary>
-        /// <param name="county">Instance of type ICounty to be added.</param>
+        /// <param name="county">The county to be added.</param>
         /// <returns>Returns <see cref="Task{Boolean}"/> indicating whether the operation was executed successfuly.</returns>
-        Task<bool> Add(ICounty county);
+        Task<bool> AddAsync(ICounty county);
 
         /// <summary>
-        /// Deletes a county of type ICounty.
-        /// </summary>
-        /// <param name="county">Instance of type ICounty</param>
-        /// <returns>Returns <see cref="Task{Boolean}"/> indicating whether the operation was executed successfuly.</returns>
-        Task<bool> Delete(ICounty county);
-
-        /// <summary>
-        /// Deletes the county with the given Id.
+        /// Asynchronously deletes the county with the given Id.
         /// </summary>
         /// <param name="id">Id of the county</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        Task<bool> Delete(Guid id);
+        Task<bool> DeleteAsync(Guid id);
 
         /// <summary>
-        /// Gets all counties.
+        /// Asynchronously gets the county with the given Id.
         /// </summary>
-        /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        Task<IEnumerable<ICounty>> GetAllAsync();
-
-        /// <summary>
-        /// Gets the county with the given Id.
-        /// </summary>
-        /// <param name="id">Id of the county to be fetched.</param>
+        /// <param name="id">Id of the county.</param>
         /// <returns>Returns <see cref="Task{ICounty}"/></returns>
         Task<ICounty> GetAsync(Guid id);
 
         /// <summary>
-        /// Gets a range of counties which names contain the string given by the filter object.
+        /// Asynchronously gets a range of counties which names contain the string given by the filter object.
         /// </summary>
-        /// <param name="filter">Filter instance of type IFilter</param>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
+        /// <param name="filter">The filter to be used</param>
+        /// <param name="paging">An instance of <see cref="IPagingParameters"/>, holds paging data.</param>
+        /// <param name="sorting">Sorting options to be applied.</param>
         /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        Task<IEnumerable<ICounty>> GetRangeAsync(IFilter filter, IPagingParameters paging);
+        Task<IEnumerable<ICounty>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter);
 
         /// <summary>
-        /// Gets a range of counties.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        Task<IEnumerable<ICounty>> GetRangeAsync(IPagingParameters paging);
-
-        /// <summary>
-        /// Gets a sorted range of counties.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <param name="sorting">A class instance that implements <see cref="ISortingParameters"/>, holds sorting options.</param>
-        /// <returns></returns>
-        Task<IEnumerable<ICounty>> GetRangeAsync(IPagingParameters paging, ISortingParameters sorting);
-
-        /// <summary>
-        /// Updates a county of type ICounty.
+        /// Asynchronously updates a county.
         /// </summary>
         /// <param name="county">The county to be updated.</param>
         /// <returns>Returns <see cref="Task{bool}"/></returns>
-        Task<bool> Update(ICounty county);
+        Task<bool> UpdateAsync(ICounty county);
     }
 }

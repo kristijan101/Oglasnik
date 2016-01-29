@@ -11,6 +11,9 @@ namespace Oglasnik.DAL.Mappings
 {
     internal class CategoryMap : EntityTypeConfiguration<CategoryEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CategoryMap"/> class.
+        /// </summary>
         internal CategoryMap()
         {
             HasKey(p => p.Id);

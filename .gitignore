@@ -236,3 +236,10 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+### Bower ###
+**/bower_components/
+**/lib/
+.bower-cache
+.bower-registry
+.bower-tmp

@@ -11,6 +11,9 @@ namespace Oglasnik.DAL.Mappings
 {
     internal class AdMap : EntityTypeConfiguration<AdEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdMap"/> class.
+        /// </summary>
         internal AdMap()
         {
             HasKey(p => p.Id);

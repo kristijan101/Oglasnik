@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Oglasnik</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel='stylesheet' href='assets/lib/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body ng-app="app">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Oglasnik</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/admin">Admin</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="./">Login <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Register</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </nav>
+        <div ui-view></div>      
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">&copy; 2015 Oglasnik</p>
+        </div>
+    </footer>
+
+	<!--Angular-->
+    <script src="assets/lib/angular/angular.min.js"></script>
+    <script src="assets/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src='assets/lib/angular-loading-bar/build/loading-bar.min.js'></script>
+	
+    <script src="assets/lib/jquery/dist/jquery.min.js"></script>
+    
+	<script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!--aplikacija-->
+    <script src="app/app.module.js"></script>
+    <script src="app/components/county/county.controller.js"></script>
+    <script src="app/components/county/county-add.controller.js"></script>
+    <script src="app/components/county/county-edit.controller.js"></script>
+    <script src="app/components/county/county.service.js"></script>
+    <script src="app/components/location/location.controller.js"></script>
+    <script src="app/components/location/location-add.controller.js"></script>
+    <script src="app/components/location/location-edit.controller.js"></script>
+    <script src="app/components/location/location.service.js"></script>
+    <script src="app/shared/constants/routes.js"></script>
+</body>
+</html>

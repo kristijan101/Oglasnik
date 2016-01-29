@@ -10,22 +10,27 @@ using System.Linq;
 using System.Linq.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
+using PagedList;
 
 namespace Oglasnik.Repository
 {
     public class CountyRepository : ICountyRepository
     {
+        #region Fields
+
         /// <summary>
-        /// Store for the repository instance of type IRepository
+        /// Store for a generic repository instance of type <see cref="IRepository"/>
         /// </summary>
-        private IRepository repository;
+        private readonly IRepository repository;
+
+        #endregion
 
         #region Constructor
 
         /// <summary>
-        /// The class constructor.
+        /// Initializes a new instance of the <see cref="CountyRepository"/> class with a generic repository instance of type <see cref="IRepository"/>.
         /// </summary>
-        /// <param name="repository">Repository instance of type IRepository</param>
+        /// <param name="repository">The repository of type <see cref="IRepository"/>.</param>
         public CountyRepository(IRepository repository)
         {
             this.repository = repository;
@@ -36,11 +41,12 @@ namespace Oglasnik.Repository
         #region Methods
 
         /// <summary>
-        /// Adds a county of type ICounty.
+        /// Asynchronously adds a county.
         /// </summary>
-        /// <param name="county">Instance of type ICounty to be added.</param>
+        /// <param name="county">The county to be added.</param>
         /// <returns>Returns <see cref="Task{Boolean}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Add(ICounty county)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="county"/> is null.</exception>
+        public Task<bool> AddAsync(ICounty county)
         {
             if(county == null)
             {
@@ -50,25 +56,11 @@ namespace Oglasnik.Repository
         }
 
         /// <summary>
-        /// Deletes a county of type ICounty.
-        /// </summary>
-        /// <param name="county">Instance of type ICounty</param>
-        /// <returns>Returns <see cref="Task{Boolean}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Delete(ICounty county)
-        {
-            if (county == null)
-            {
-                throw new ArgumentNullException("county");
-            }
-            return repository.DeleteAsync(Mapper.Map<CountyEntity>(county));
-        }
-
-        /// <summary>
-        /// Deletes the county with the given Id.
+        /// Asynchronously deletes the county with the given Id.
         /// </summary>
         /// <param name="id">Id of the county</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        public Task<bool> Delete(Guid id)
+        public Task<bool> DeleteAsync(Guid id)
         {
             CountyEntity county = new CountyEntity { Id = id };
             
@@ -76,101 +68,57 @@ namespace Oglasnik.Repository
         }
 
         /// <summary>
-        /// Gets all counties.
+        /// Asynchronously gets the county with the given Id.
         /// </summary>
-        /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        public async Task<IEnumerable<ICounty>> GetAllAsync()
-        {
-            return Mapper.Map<IEnumerable<ICounty>>(await repository.GetAll<CountyEntity>().ToListAsync());
-        }
-
-        /// <summary>
-        /// Gets the county with the given Id.
-        /// </summary>
-        /// <param name="id">Id of the county to be fetched.</param>
+        /// <param name="id">Id of the county.</param>
         /// <returns>Returns <see cref="Task{ICounty}"/></returns>
         public async Task<ICounty> GetAsync(Guid id)
         {
-            return Mapper.Map<ICounty>(await repository.GetById<CountyEntity>(id));
+            return Mapper.Map<ICounty>(await repository.GetAsync<CountyEntity>(id));
         }
 
         /// <summary>
-        /// Gets a range of counties which names contain the string given by the filter object.
+        /// Asynchronously gets a sorted collection of counties, an optional filter can also be applied.
         /// </summary>
-        /// <param name="filter">Filter instance of type IFilter</param>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
+        /// <param name="filter">An optional filter to be used</param>
+        /// <param name="paging">An instance of a class that implements <see cref="IPagingParameters"/>.</param>
+        /// <param name="sorting">An instance of a class that implements <see cref="ISortingParameters"/>.</param>
         /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        public async Task<IEnumerable<ICounty>> GetRangeAsync(IFilter filter, IPagingParameters paging)
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="paging"/> is null.</exception>
+        public async Task<IEnumerable<ICounty>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
         {
-            if(filter == null)
-            {
-                throw new ArgumentNullException("filter");
-            }
             if(paging == null)
             {
                 throw new ArgumentNullException("paging");
             }
 
-            var query = repository.GetAll<CountyEntity>()
-                            .OrderBy(e => e.Name)
-                            .Where(e => e.Name.ToLower().Contains(filter.SearchString.ToLower()))
-                            .Skip((paging.PageNumber - 1) * paging.PageSize)
-                            .Take(paging.PageSize);
-
-            return Mapper.Map<IEnumerable<ICounty>>(await query.ToListAsync());
-        }
-
-        /// <summary>
-        /// Gets a range of counties.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        public async Task<IEnumerable<ICounty>> GetRangeAsync(IPagingParameters paging)
-        {
-            if (paging == null)
-            {
-                throw new ArgumentNullException("paging");
-            }
-
-            var query = repository.GetAll<CountyEntity>()
-                            .OrderBy(e => e.Id)
-                            .Skip((paging.PageNumber - 1) * paging.PageSize)
-                            .Take(paging.PageSize);
-
-            return Mapper.Map<IEnumerable<ICounty>>(await query.ToListAsync());
-        }
-
-        /// <summary>
-        /// Gets a sorted range of counties.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <param name="sorting">A class instance that implements <see cref="ISortingParameters"/>, holds sorting options.</param>
-        /// <returns></returns>
-        public async Task<IEnumerable<ICounty>> GetRangeAsync(IPagingParameters paging, ISortingParameters sorting)
-        {
-            if (paging == null)
-            {
-                throw new ArgumentNullException("paging");
-            }
             if(sorting == null)
             {
-                throw new ArgumentNullException("sorting");
+                IList<ISortingPair> sortPair = new List<ISortingPair>()
+                {
+                    new SortingPair("Name")
+                };
+                sorting = new SortingParameters(sortPair);
             }
 
             var query = repository.GetAll<CountyEntity>()
-                            .OrderBy(sorting.SortBy + " " + sorting.SortDirection)
-                            .Skip((paging.PageNumber - 1) * paging.PageSize)
-                            .Take(paging.PageSize);
+                            .OrderBy(sorting.GetJoinedSortExpressions());
 
-            return Mapper.Map<IEnumerable<ICounty>>(await query.ToListAsync());
+            if (filter != null)
+            {
+                query = query.Where(e => e.Name.ToLower().Contains(filter.SearchString.ToLower()));
+            }
+
+            return Mapper.Map<IEnumerable<ICounty>>(await query.ToPagedListAsync(paging.PageNumber, paging.PageSize));
         }
 
         /// <summary>
-        /// Updates a county of type ICounty.
+        /// Asynchronously updates a county.
         /// </summary>
         /// <param name="county">The county to be updated.</param>
         /// <returns>Returns <see cref="Task{bool}"/></returns>
-        public Task<bool> Update(ICounty county)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="county"/> is null.</exception>
+        public Task<bool> UpdateAsync(ICounty county)
         {
             if (county == null)
             {

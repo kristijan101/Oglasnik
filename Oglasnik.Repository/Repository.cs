@@ -12,19 +12,19 @@ namespace Oglasnik.Repository
         #region Properties
 
         /// <summary>
-        /// Stores a database context instance of type IOglasnikContext
+        /// Stores a database context instance of type <see cref="IOglasnikContext"/>
         /// </summary>
-        /// <value>Gets/sets context of type IOglasnikContext</value>
-        protected IOglasnikContext Context { get; private set; }       
+        /// <value>Gets or sets context of type <see cref="IOglasnikContext"/></value>
+        protected IOglasnikContext Context { get; private set; }
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// The class constructor.
+        /// Initializes a new instance of the <see cref="Repository"/> class.
         /// </summary>
-        /// <param name="context">Instance of a type that implements IOglasnikContext.</param>
+        /// <param name="context">The context.</param>
         public Repository(IOglasnikContext context)
         {
             Context = context;
@@ -35,10 +35,10 @@ namespace Oglasnik.Repository
         #region Methods
 
         /// <summary>
-        /// Adds an entity of type TEntity
+        /// Asynchronously adds an entity
         /// </summary>
-        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
-        /// <param name="entity">Entity of type TEntity</param>
+        /// <typeparam name="TEntity">The type of the entity to be added.</typeparam>
+        /// <param name="entity">The entity.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
         public async Task<bool> AddAsync<TEntity>(TEntity entity) where TEntity : class
         {
@@ -53,10 +53,10 @@ namespace Oglasnik.Repository
         }
 
         /// <summary>
-        /// Deletes an entity of type TEntity.
+        /// Asynchronously deletes an entity.
         /// </summary>
-        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
-        /// <param name="entity">Entity of type TEntity</param>
+        /// <typeparam name="TEntity">The type of the entity to be deleted.</typeparam>
+        /// <param name="entity">The entity</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
         public async Task<bool> DeleteAsync<TEntity>(TEntity entity) where TEntity : class
         {
@@ -84,23 +84,23 @@ namespace Oglasnik.Repository
         {
             return Context.Set<TEntity>();
         }
-        
+
         /// <summary>
-        /// Gets the entity with the given Id.
+        /// Asynchronously gets the entity with the given Id.
         /// </summary>
         /// <param name="id">Id of type <see cref="Guid"/> of the entity to be found.</param>
         /// <returns>The requested entity or null if not found</returns>
-        public Task<TEntity> GetById<TEntity>(Guid id) where TEntity : class
+        public Task<TEntity> GetAsync<TEntity>(Guid id) where TEntity : class
         {
             return Context.Set<TEntity>().FindAsync(id);
         }
 
 
         /// <summary>
-        /// Updates an entity of type TEntity.
+        /// Asynchronously updates an entity.
         /// </summary>
-        /// <typeparam name="TEntity">Reference type of the entity to be added.</typeparam>
-        /// <param name="entity">Entity of type TEntity</param>
+        /// <typeparam name="TEntity">The type of entity.</typeparam>
+        /// <param name="entity">The entity.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
         public async Task<bool> UpdateAsync<TEntity>(TEntity entity) where TEntity : class
         {

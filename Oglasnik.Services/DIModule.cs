@@ -11,6 +11,9 @@ namespace Oglasnik.Services
 {
     public class DIModule : NinjectModule
     {
+        /// <summary>
+        /// Loads the module into the kernel.
+        /// </summary>
         public override void Load()
         {
             Bind<ILocationService>().To<LocationService>();

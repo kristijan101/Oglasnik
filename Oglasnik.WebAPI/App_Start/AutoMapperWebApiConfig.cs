@@ -10,6 +10,9 @@ namespace Oglasnik.WebAPI.App_Start
 {
     public class AutoMapperWebApiConfig : Profile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoMapperWebApiConfig"/> class.
+        /// </summary>
         public AutoMapperWebApiConfig()
         {
             Mapper.CreateMap<ICounty, CountyModel>().ReverseMap();

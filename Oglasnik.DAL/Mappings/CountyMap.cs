@@ -11,6 +11,9 @@ namespace Oglasnik.DAL.Mappings
 {
     class CountyMap : EntityTypeConfiguration<CountyEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CountyMap"/> class.
+        /// </summary>
         internal CountyMap()
         {
             HasKey(p => p.Id);

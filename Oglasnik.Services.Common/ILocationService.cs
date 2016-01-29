@@ -11,67 +11,40 @@ namespace Oglasnik.Services.Common
     public interface ILocationService
     {
         /// <summary>
-        /// Adds a location.
+        /// Asynchronously adds a location.
         /// </summary>
         /// <param name="location">The location instance to be added.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        Task<bool> Add(ILocation location);
+        Task<bool> AddAsync(ILocation location);
 
         /// <summary>
-        /// Deletes a location.
-        /// </summary>
-        /// <param name="location">The location instance to be deleted.</param>
-        /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        Task<bool> Delete(ILocation location);
-
-        /// <summary>
-        /// Deletes a location with the given Id.
+        /// Asynchronously deletes a location with the given Id.
         /// </summary>
         /// <param name="id">Id of the location to be deleted.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        Task<bool> Delete(Guid id);
+        Task<bool> DeleteAsync(Guid id);
 
         /// <summary>
-        /// Gets all locations.
+        /// Asynchronously gets the location with the specified Id.
         /// </summary>
-        /// <returns></returns>
-        Task<IEnumerable<ILocation>> GetAll();
-
-        /// <summary>
-        /// Gets the location with the specified Id.
-        /// </summary>
-        /// <param name="id">Id (of type <see cref="Guid"/>) of the county.</param>
+        /// <param name="id">Id of the county.</param>
         /// <returns>Returns the location requested or null if not found.</returns>
-        Task<ILocation> GetById(Guid id);
+        Task<ILocation> GetAsync(Guid id);
 
         /// <summary>
-        /// Gets a range of locations which names contain the string given by the filter object.
+        /// Asynchronously gets a range of locations which names contain the string given by the filter object.
         /// </summary>
         /// <param name="filter">Filter instance of type IFilter</param>
         /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
+        /// <param name="sorting">Sorting options</param>
         /// <returns>Returns <see cref="Task{IEnumerable{ILocation}}"/></returns>
-        Task<IEnumerable<ILocation>> GetRange(IFilter filter, IPagingParameters paging);
+        Task<IEnumerable<ILocation>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter);
 
         /// <summary>
-        /// Gets a range of locations.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ILocation}}"/></returns>
-        Task<IEnumerable<ILocation>> GetRange(IPagingParameters paging);
-
-        /// <summary>
-        /// Gets a sorted range of locations.
-        /// </summary>
-        /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <param name="sorting">A class instance that implements <see cref="ISortingParameters"/>, holds sorting options.</param>
-        /// <returns></returns>
-        Task<IEnumerable<ILocation>> GetRange(IPagingParameters paging, ISortingParameters sorting);
-
-        /// <summary>
-        /// Updates a location.
+        /// Asynchronously updates a location.
         /// </summary>
         /// <param name="location">The county to be updated.</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
-        Task<bool> Update(ILocation location);
+        Task<bool> UpdateAsync(ILocation location);
     }
 }

@@ -11,6 +11,9 @@ namespace Oglasnik.Model
 {
     public class AutoMapperModelConfig : Profile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoMapperModelConfig"/> class.
+        /// </summary>
         public AutoMapperModelConfig()
         {
             Mapper.CreateMap<ICounty, CountyEntity>().ReverseMap();
