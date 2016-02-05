@@ -1,45 +1,45 @@
 ﻿(function(){
     angular
-        .module("app", ["angular-loading-bar", "ui.router"])
-            .config(["$stateProvider", "$urlRouterProvider", RoutesConfig]);
+        .module('app', ['angular-loading-bar', 'ui.router', 'angular-cache'])
+            .config(['$stateProvider', '$urlRouterProvider', RoutesConfig]);
 
     function RoutesConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise('/');
 
         //county
         $stateProvider
-            .state("admin", {
-                url:"/admin",
-                templateUrl: "app/shared/admin/admin.html"
+            .state('admin', {
+                url:'/admin',
+                templateUrl: 'app/shared/admin/admin.html'
             })
-            .state("admin.county" ,{
+            .state('admin.county' ,{
                 abstract: true,
-                url:"/county",
-                template:"<ui-view />"
+                url:'/county',
+                template:'<ui-view />'
             })
-            .state("admin.county.list", {
-                url:"",
-                templateUrl: "app/components/county/county.list.html",
-                controller: "CountyController as county",
+            .state('admin.county.list', {
+                url:'',
+                templateUrl: 'app/components/county/county.list.html',
+                controller: 'CountyController as county',
                 resolve: {
-                    counties: ["countyService",
+                    counties: ['countyService',
                        function (countyService) {
-                            return countyService.get();
+                            return countyService.get({});
                         }
                     ]
                 }
             })
-            .state("admin.county.add", {
-                url: "/new",
-                templateUrl: "app/components/county/county.add.html",
-                controller: "CountyAddController as countyAdd"
+            .state('admin.county.add', {
+                url: '/new',
+                templateUrl: 'app/components/county/county.add.html',
+                controller: 'CountyAddController as countyAdd'
             })
-            .state("admin.county.edit", {
-                url:"/edit/:id",
-                templateUrl: "app/components/county/county.edit.html",
-                controller: "CountyEditController as countyEdit",
+            .state('admin.county.edit', {
+                url:'/edit/:id',
+                templateUrl: 'app/components/county/county.edit.html',
+                controller: 'CountyEditController as countyEdit',
                 resolve: {
-                    county: ["countyService", "$stateParams",
+                    county: ['countyService', '$stateParams',
                         function (countyService, $stateParams) {
                             return countyService.getById($stateParams.id);
                         }
@@ -48,47 +48,48 @@
             });
         //location
         $stateProvider
-            .state("admin.location", {
+            .state('admin.location', {
                 abstract:true,
-                url:"/location",
-                template:"<ui-view />"
+                url:'/location',
+                template:'<ui-view />'
             })
-            .state("admin.location.list", {
-                templateUrl: "app/components/location/location.list.html",
-                controller: "LocationController as location",
+            .state('admin.location.list', {
+                url:'',
+                templateUrl: 'app/components/location/location.list.html',
+                controller: 'LocationController as location',
                 resolve: {
-                    locations: ["locationService",
+                    locations: ['locationService',
                         function (locationService) {
-                            return locationService.get();
+                            return locationService.get({});
                         }
                     ]
                 }
             })
-            .state("admin.location.add", {
-                url: "/new",
-                templateUrl: "app/components/location/location.add.html",
-                controller: "LocationAddController as locationAdd",
+            .state('admin.location.add', {
+                url: '/new',
+                templateUrl: 'app/components/location/location.add.html',
+                controller: 'LocationAddController as locationAdd',
                 resolve: {
-                    counties: ["countyService",
+                    counties: ['countyService',
                         function (countyService) {
-                            return countyService.get();
+                            return countyService.get({});
                         }
                     ]
                 }
             })
-            .state("admin.location.edit", {
-                url: "/edit/:id",
-                templateUrl: "app/components/location/location.edit.html",
-                controller: "LocationEditController as locationEdit",
+            .state('admin.location.edit', {
+                url: '/edit/:id',
+                templateUrl: 'app/components/location/location.edit.html',
+                controller: 'LocationEditController as locationEdit',
                 resolve: {
-                    location: ["locationService", "$stateParams",
+                    location: ['locationService', '$stateParams',
                         function (locationService, $stateParams) {
                             return locationService.getById($stateParams.id);
                         }
                     ],
-                    counties: ["countyService",
+                    counties: ['countyService',
                         function (countyService) {
-                            return countyService.get();
+                            return countyService.get({});
                         }
                     ]
                 }

@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module("app").controller("CountyEditController", ["county", "countyService", "$state", CountyEditController]);
+    angular.module('app').controller('CountyEditController', ['county', 'countyService', '$state', CountyEditController]);
 
     function CountyEditController(county, countyService, $state) {
         var vm = this;
@@ -9,12 +9,12 @@
         vm.update = update;
 
         function cancel() {
-            $state.go("admin.county.list");
+            $state.go('admin.county.list');
         }
 
         function update(county) {
             countyService.update(county).then(function (r) {
-                $state.go("admin.county.list");
+                $state.go('admin.county.list');
             })
         }
     }

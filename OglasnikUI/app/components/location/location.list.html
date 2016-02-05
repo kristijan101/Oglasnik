@@ -15,7 +15,7 @@
             <td>{{item.County}}</td>
             <td>
                 <a ui-sref="admin.location.edit({id:item.Id})" title="Edit" role="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span>  </a>
-                <a title="Delete" role="button" class="btn btn-xs btn-default" ng-click="location.delete(item.Id, $index)"><span class="glyphicon glyphicon-remove"></span>  </a>
+                <a title="Delete" role="button" class="btn btn-xs btn-default" ng-click="location.remove(item.Id)"><span class="glyphicon glyphicon-remove"></span>  </a>
             </td>
         </tr>
     </tbody>

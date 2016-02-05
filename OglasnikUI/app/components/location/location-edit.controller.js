@@ -1,7 +1,7 @@
 ﻿(function () {
     angular
-        .module("app")
-        .controller("LocationEditController", ["location", "locationService", "counties", "$state", LocationEditController]);
+        .module('app')
+        .controller('LocationEditController', ['location', 'locationService', 'counties', '$state', LocationEditController]);
 
     function LocationEditController(location, locationService, counties, $state) {
         var vm = this;
@@ -12,12 +12,12 @@
         vm.update = update;
         
         function cancel() {
-            $state.go("admin.location.list");
+            $state.go('admin.location.list');
         }
 
         function update(location) {
             locationService.updateLocation(location).then(function(r) {
-                $state.go("admin.location.list");
+                $state.go('admin.location.list');
             })
         }
     }

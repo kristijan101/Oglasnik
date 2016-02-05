@@ -1,38 +1,69 @@
 ﻿(function () {
-    angular.module("app").factory("locationService", ["$http", "ROUTE", locationService]);
+    angular.module('app').factory('locationService', ['$q','$http', 'CacheFactory','API_URL', locationService]);
 
-    function locationService($http, route) {
-        var _locations = [];
+    function locationService($q, $http, CacheFactory, API_URL) {
+        'use strict';
+
+        var cache = CacheFactory.get('locationCache')
+                    || CacheFactory('locationCache', {
+                            maxAge: 5 * 60 * 1000,
+                            deleteOnExpire: 'aggressive'
+                        });
+        var locationUrl = API_URL + '/location';
 
         return {
             add: function (location) {
-                return $http.post(route.LOCATION, location);
+                return $http.post(locationUrl, location);
             },
-            remove: function (id) {
-                return $http.delete(route.LOCATION + "?id=" + id);
-            },
-            get: function(){
-                return $http.get(route.LOCATION).then(
-                    function (response) {
-                        _locations = response.data;
-                        return _locations;
-                    }
+            
+            get: function(options){
+                return $http.get(locationUrl, 
+                    {
+                        params: 
+                        {
+                            q : options.query || "", 
+                            page : options.page || 1, 
+                            size : options.size || 20, 
+                            sort : options.orderBy || "name", 
+                            asc : options.orderDirection === 'desc' ? false : true
+                        }
+                    }).then(
+                        function (response) {
+                            var locations = response.data;
+
+                            for(var i in locations){
+                                var location = locations[i];
+
+                                if(!cache.get(location.Id)) cache.put(location.Id, location);
+                            }
+                            return locations;
+                        }
                 );
             },
             getById: function (id) {
-                for (var i in _locations) {
-                    if (_locations[i].Id === id) {
-                        return _locations[i];
-                    }
-                }                
-                return $http.get(route.LOCATION + "?id=" + id).then(
-                    function (response) {
-                        return response.data;
-                    }
-                );
+                var location = cache.get(id);
+
+                if(location){
+                    return $q.when(location);
+                }
+                else 
+                {
+                    return $http.get(locationUrl + '/' + id).then(
+                        function (response) {
+                            var location = response.data;
+
+                            cache.put(location.Id, location);
+                            return location;
+                        }
+                    );
+                }
             },
-            getRange: function(searchString, page, size){
-                return $http.get(route.LOCATION + "?search=" + searchString + "&pageNum=" + page + "&pageSize=" + size);
+            remove: function (id) {
+                return $http.delete(locationUrl + '/' + id).then(
+                    function(response){
+                        if(cache.get(id)) cache.remove(id);
+                        return response;
+                    });
             },
             //returns a comma seperated string of location names
             toString: function(locations) {                
@@ -41,10 +72,17 @@
                 for (var i in locations) {
                     temp.push(locations[i].Name);
                 }
-                return temp.sort().join(", ");
+                return temp.sort().join(', ');
             },
             update: function (location) {
-                return $http.put(route.LOCATION, location);
+                return $http.put(locationUrl, location).then(
+                    function(response){
+                        if(cache.get(location.Id)){
+                            cache.remove(location.Id);
+                            cache.put(location.Id, location);
+                        }
+                        return response;
+                    });
             }
         }
     }

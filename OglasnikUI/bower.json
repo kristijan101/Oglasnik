@@ -21,6 +21,7 @@
     "bootstrap": "~3.3.6",
     "jquery": "~2.2.0",
     "angular-ui-router": "~0.2.15",
-    "angular-loading-bar": "~0.8.0"
+    "angular-loading-bar": "~0.8.0",
+    "angular-cache": "~4.5.0"
   }
 }
