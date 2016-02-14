@@ -104,7 +104,7 @@ namespace Oglasnik.Repository
             var query = repository.GetAll<CountyEntity>()
                             .OrderBy(sorting.GetJoinedSortExpressions());
 
-            if (filter != null)
+            if (filter != null && !string.IsNullOrEmpty(filter.SearchString))
             {
                 query = query.Where(e => e.Name.ToLower().Contains(filter.SearchString.ToLower()));
             }
