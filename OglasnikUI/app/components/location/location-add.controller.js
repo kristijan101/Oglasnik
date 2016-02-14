@@ -1,19 +1,29 @@
 ﻿(function(){
     angular
         .module('app')
-        .controller('LocationAddController', ['$state', 'locationService', 'counties', LocationAddController]);
+        .controller('LocationAddController', ['$state', 'countyService','locationService', LocationAddController]);
 
-    function LocationAddController($state, locationService, counties) {
+    function LocationAddController($state, countyService, locationService) {
         var vm = this;
 
         vm.add = add;
         vm.cancel = cancel;
-        vm.counties = counties;
+        vm.counties = [];
         vm.location = {
             "Id": "",
             "Name": "",
             "CountyID": null
         };
+
+        activate();
+
+        function activate(){
+            return countyService.get({}).then(
+                function(data){
+                    vm.counties = data;
+                    return data;
+                });
+        }
 
         function add(location) {
             locationService.add(location).then(function (response) {

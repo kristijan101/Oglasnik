@@ -1,22 +1,36 @@
 ﻿(function () {
     angular
         .module('app')
-        .controller('LocationEditController', ['location', 'locationService', 'counties', '$state', LocationEditController]);
+        .controller('LocationEditController', ['$q', '$state', 'countyService','locationService', LocationEditController]);
 
-    function LocationEditController(location, locationService, counties, $state) {
+    function LocationEditController($q, $state, countyService, locationService) {
         var vm = this;
 
         vm.cancel = cancel;
-        vm.counties = counties;
-        vm.location = location;
+        vm.counties = [];
+        vm.location = {};
         vm.update = update;
+
+        activate();
+
+        function activate(){
+            return $q.all({
+                        counties: countyService.get({}),
+                        location: locationService.getById($state.params.id)
+                    }).then(function(data){
+                        vm.counties = data.counties;
+                        vm.location = data.location;
+
+                        return data;
+                    });
+        }
         
         function cancel() {
             $state.go('admin.location.list');
         }
 
         function update(location) {
-            locationService.updateLocation(location).then(function(r) {
+            locationService.update(location).then(function(r) {
                 $state.go('admin.location.list');
             })
         }

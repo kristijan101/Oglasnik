@@ -1,9 +1,14 @@
-﻿<a ui-sref="admin.county.add" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> Add</a>
+﻿<div class="col-lg-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." ng-model="county.query" ng-model-options="{'debounce':{'default': 500, 'blur': 0}, 'updateOn': 'default blur'}">
+    </div><!-- /input-group -->
+</div>
+<a ui-sref="admin.county.add" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> Add</a>
 <table class="table table-striped">
     <thead>
         <tr>
             <th></th>
-            <th>County</th>
+            <th og-sort order-value="name" reverse="county.reverseOrder" order-by="county.orderBy">County</th>
             <th>Locations</th>
             <th></th>
         </tr>     
@@ -20,3 +25,4 @@
         </tr>
     </tbody>
 </table>
+<og-pager page="county.currentPage"></og-pager>
