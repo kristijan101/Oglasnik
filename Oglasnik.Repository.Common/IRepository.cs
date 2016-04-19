@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oglasnik.Common;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -27,6 +28,14 @@ namespace Oglasnik.Repository.Common
         /// <param name="entity">The entity</param>
         /// <returns>Returns <see cref="Task{bool}"/> indicating whether the operation was executed successfuly.</returns>
         Task<bool> DeleteAsync<TEntity>(TEntity county) where TEntity : class;
+
+        /// <summary>
+        /// Gets a range of entities.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="paging">The paging parameters.</param>
+        /// <returns>Returns an <see cref="IQueryable{TEntity}"/> of entities according to the paging options provided.</returns>
+        IQueryable<TEntity> Get<TEntity>(IPagingParameters paging) where TEntity : class;
 
         /// <summary>
         /// Gets all entities of the given type.

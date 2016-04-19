@@ -3,6 +3,7 @@ using Oglasnik.Common;
 using Oglasnik.Model.Common;
 using Oglasnik.Services.Common;
 using Oglasnik.WebAPI.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -102,9 +103,10 @@ namespace Oglasnik.WebAPI.Controllers
                              );
             }
 
-            IEnumerable<CountyModel> counties = Mapper.Map<IEnumerable<CountyModel>>(
-                await countyService.GetAsync(new PagingParameters(page, size), sortParams, filter)
-                );
+            PagedListViewModel<CountyModel> counties = Mapper.Map<PagedListViewModel<CountyModel>>(
+                Mapper.Map<IPagedList<CountyModel>>(
+                    await countyService.GetAsync(new PagingParameters(page, size), sortParams, filter)
+                ));
 
             if (counties != null)
             {

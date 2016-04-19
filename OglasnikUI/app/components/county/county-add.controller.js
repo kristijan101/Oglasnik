@@ -1,5 +1,5 @@
 ﻿(function() {
-    angular.module('app').controller('CountyAddController', ['countyService', '$state', CountyAddController]);
+    angular.module("app").controller("CountyAddController", ["countyService", "$state", CountyAddController]);
 
     function CountyAddController(countyService, $state) {
         var vm = this;
@@ -14,12 +14,12 @@
 
         function add(county) {
             countyService.add(county).then(function(response) {
-                $state.go('admin.county.list');                
+                $state.go("admin.county.list");                
             });
         }
 
         function cancel() {
-            $state.go('admin.county.list');
+            $state.go("admin.county.list");
         }
     }
 }());

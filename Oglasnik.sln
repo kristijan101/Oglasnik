@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oglasnik.DAL", "Oglasnik.DAL\Oglasnik.DAL.csproj", "{F8EF18A7-FD39-41F0-8359-93ADAA3DA944}"
 EndProject
@@ -20,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oglasnik.Services.Common", "Oglasnik.Services.Common\Oglasnik.Services.Common.csproj", "{B70DC577-E381-4FF9-BE53-B4182DEC1E7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oglasnik.WebAPI", "Oglasnik.WebAPI\Oglasnik.WebAPI.csproj", "{8414B2D7-5C09-43D0-8872-A7336B4282C0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oglasnik.UI", "Oglasnik.UI\Oglasnik.UI.csproj", "{F8AA27FE-C0B8-4CE7-A2F6-7CB0A69F1FAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +63,6 @@ Global
 		{8414B2D7-5C09-43D0-8872-A7336B4282C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8414B2D7-5C09-43D0-8872-A7336B4282C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8414B2D7-5C09-43D0-8872-A7336B4282C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8AA27FE-C0B8-4CE7-A2F6-7CB0A69F1FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8AA27FE-C0B8-4CE7-A2F6-7CB0A69F1FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8AA27FE-C0B8-4CE7-A2F6-7CB0A69F1FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8AA27FE-C0B8-4CE7-A2F6-7CB0A69F1FAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -51,6 +51,11 @@ namespace Oglasnik.Repository
             {
                 throw new ArgumentNullException("location");
             }
+
+            if(location.CountyID == Guid.Empty)
+            {
+                throw new Exception();
+            }
             
             return repository.AddAsync(Mapper.Map<LocationEntity>(location));
         }
@@ -82,9 +87,9 @@ namespace Oglasnik.Repository
         /// </summary>
         /// <param name="filter">Filter instance of type <see cref="IFilter"/></param>
         /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ILocation}}"/></returns>
+        /// <returns>Returns <see cref="Task{IPagedList{ILocation}}"/></returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="paging"/> is null.</exception>
-        public async Task<IEnumerable<ILocation>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
+        public async Task<IPagedList<ILocation>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
         {
             if (paging == null)
             {
@@ -108,7 +113,7 @@ namespace Oglasnik.Repository
                 query = query.Where(e => e.Name.ToLower().Contains(filter.SearchString.ToLower()));
             }
 
-            return Mapper.Map<IEnumerable<ILocation>>(await query.ToPagedListAsync(paging.PageNumber, paging.PageSize));
+            return Mapper.Map<IPagedList<ILocation>>(await query.ToPagedListAsync(paging.PageNumber, paging.PageSize));
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using Oglasnik.Common;
 using Oglasnik.Model.Common;
 using Oglasnik.Services.Common;
 using Oglasnik.WebAPI.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,9 +104,10 @@ namespace Oglasnik.WebAPI.Controllers
                              );
             }
 
-            IEnumerable<LocationModel> locations = Mapper.Map<IEnumerable<LocationModel>>(
-                await locationService.GetAsync(new PagingParameters(page, size), sortParams, filter)
-                );
+            PagedListViewModel<LocationModel> locations = Mapper.Map<PagedListViewModel<LocationModel>>(
+                Mapper.Map<IPagedList<LocationModel>>(
+                    await locationService.GetAsync(new PagingParameters(page, size), sortParams, filter)
+                ));
 
             if (locations != null)
             {

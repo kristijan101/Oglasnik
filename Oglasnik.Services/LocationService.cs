@@ -2,10 +2,9 @@
 using Oglasnik.Model.Common;
 using Oglasnik.Repository.Common;
 using Oglasnik.Services.Common;
+using PagedList;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Oglasnik.Services
@@ -78,9 +77,9 @@ namespace Oglasnik.Services
         /// <param name="filter">Filter instance of type IFilter</param>
         /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
         /// <param name="sorting">Sorting options</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ILocation}}"/></returns>
+        /// <returns>Returns <see cref="Task{IPagedList{ILocation}}"/></returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="paging"/> is null.</exception>
-        public Task<IEnumerable<ILocation>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
+        public Task<IPagedList<ILocation>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
         {
             if(paging == null)
             {

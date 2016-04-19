@@ -1,14 +1,9 @@
-﻿<div class="col-lg-4">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for..." ng-model="location.query" ng-model-options="{'debounce':{'default': 500, 'blur': 0}, 'updateOn': 'default blur'}">
-    </div><!-- /input-group -->
-</div>
-<a ui-sref="admin.location.add" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> Add</a>
+﻿<a ui-sref="admin.location.add" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> Add</a>
 <table class="table table-striped">
     <thead>
         <tr>
             <th></th>
-            <th og-sort order-value="name" reverse="location.reverseOrder" order-by="location.orderBy">Location</th>
+            <th>Location</th>
             <th>County</th>
             <th></th>
         </tr>
@@ -20,9 +15,8 @@
             <td>{{item.County}}</td>
             <td>
                 <a ui-sref="admin.location.edit({id:item.Id})" title="Edit" role="button" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span>  </a>
-                <a title="Delete" role="button" class="btn btn-xs btn-default" ng-click="location.remove(item.Id)"><span class="glyphicon glyphicon-remove"></span>  </a>
+                <a title="Delete" role="button" class="btn btn-xs btn-default" ng-click="location.delete(item.Id, $index)"><span class="glyphicon glyphicon-remove"></span>  </a>
             </td>
         </tr>
     </tbody>
 </table>
-<og-pager page="location.pageNum"></og-pager>

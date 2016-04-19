@@ -1,9 +1,8 @@
 ﻿using Oglasnik.Common;
 using Oglasnik.Model.Common;
+using PagedList;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Oglasnik.Services.Common
@@ -37,8 +36,8 @@ namespace Oglasnik.Services.Common
         /// <param name="filter">Filter instance of type IFilter</param>
         /// <param name="paging">A class instance that implements <see cref="IPagingParameters"/>, holds paging data.</param>
         /// <param name="sorting">Sorting options</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ILocation}}"/></returns>
-        Task<IEnumerable<ILocation>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter);
+        /// <returns>Returns <see cref="Task{IPagedList{ILocation}}"/></returns>
+        Task<IPagedList<ILocation>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter);
 
         /// <summary>
         /// Asynchronously updates a location.

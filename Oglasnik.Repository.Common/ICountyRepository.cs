@@ -1,9 +1,8 @@
 ﻿using Oglasnik.Common;
 using Oglasnik.Model.Common;
+using PagedList;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Oglasnik.Repository.Common
@@ -37,8 +36,8 @@ namespace Oglasnik.Repository.Common
         /// <param name="filter">The filter to be used</param>
         /// <param name="paging">An instance of <see cref="IPagingParameters"/>, holds paging data.</param>
         /// <param name="sorting">Sorting options to be applied.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        Task<IEnumerable<ICounty>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter);
+        /// <returns>Returns <see cref="Task{IPagedList{ICounty}}"/></returns>
+        Task<IPagedList<ICounty>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter);
 
         /// <summary>
         /// Asynchronously updates a county.

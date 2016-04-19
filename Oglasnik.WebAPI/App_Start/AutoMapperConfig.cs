@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
 
 namespace Oglasnik.WebAPI.App_Start
 {
@@ -15,6 +11,7 @@ namespace Oglasnik.WebAPI.App_Start
         {
             Mapper.Initialize(cfg => {
                 cfg.AddProfile<Model.AutoMapperModelConfig>();
+                cfg.AddProfile<Repository.AutoMapperRepositoryConfig>();
                 cfg.AddProfile<AutoMapperWebApiConfig>();
             });
         }

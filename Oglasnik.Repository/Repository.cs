@@ -1,4 +1,6 @@
-﻿using Oglasnik.DAL.Contracts;
+﻿using Oglasnik.Common;
+using Oglasnik.DAL.Contracts;
+using PagedList;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -74,6 +76,17 @@ namespace Oglasnik.Repository
             entry.State = EntityState.Deleted;
 
             return (await Context.SaveChangesAsync() != 0);
+        }
+
+        /// <summary>
+        /// Gets a range of entities.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="paging">The paging parameters.</param>
+        /// <returns>Returns an <see cref="IQueryable{TEntity}"/> of entities according to the paging options provided.</returns>
+        public IQueryable<TEntity> Get<TEntity>(IPagingParameters paging) where TEntity : class
+        {
+            return Context.Set<TEntity>().ToPagedList(paging.PageNumber, paging.PageSize).AsQueryable();
         }
 
         /// <summary>

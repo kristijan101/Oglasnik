@@ -86,6 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapperRepositoryConfig.cs" />
     <Compile Include="CountyRepository.cs" />
     <Compile Include="DIModule.cs" />
     <Compile Include="LocationRepository.cs" />

@@ -1,5 +1,6 @@
 ﻿using Oglasnik.Common;
 using Oglasnik.Model.Common;
+using PagedList;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,8 +13,8 @@ namespace Oglasnik.Repository.Common
         /// </summary>
         /// <param name="paging">An instance of <see cref="IPagingParameters"/>, provides paging options.</param>
         /// <param name="sorting">An instance of <see cref="ISortingParameters"/>, provides sorting options.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        public static Task<IEnumerable<ICounty>> GetAsync(this ICountyRepository repository, IPagingParameters paging, ISortingParameters sorting)
+        /// <returns>Returns <see cref="Task{IPagedList{ICounty}}"/></returns>
+        public static Task<IPagedList<ICounty>> GetAsync(this ICountyRepository repository, IPagingParameters paging, ISortingParameters sorting)
         {
             return repository.GetAsync(paging, sorting, null);
         }
@@ -22,8 +23,8 @@ namespace Oglasnik.Repository.Common
         /// Asynchronously gets a list of counties.
         /// </summary>
         /// <param name="paging">An instance of <see cref="IPagingParameters"/>, provides paging options.</param>
-        /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
-        public static Task<IEnumerable<ICounty>> GetAsync(this ICountyRepository repository, IPagingParameters paging)
+        /// <returns>Returns <see cref="Task{IPagedList{ICounty}}"/></returns>
+        public static Task<IPagedList<ICounty>> GetAsync(this ICountyRepository repository, IPagingParameters paging)
         {
             return repository.GetAsync(paging, null, null);
         }

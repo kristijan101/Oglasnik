@@ -85,7 +85,7 @@ namespace Oglasnik.Repository
         /// <param name="sorting">An instance of a class that implements <see cref="ISortingParameters"/>.</param>
         /// <returns>Returns <see cref="Task{IEnumerable{ICounty}}"/></returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="paging"/> is null.</exception>
-        public async Task<IEnumerable<ICounty>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
+        public async Task<IPagedList<ICounty>> GetAsync(IPagingParameters paging, ISortingParameters sorting, IFilter filter)
         {
             if(paging == null)
             {
@@ -109,7 +109,7 @@ namespace Oglasnik.Repository
                 query = query.Where(e => e.Name.ToLower().Contains(filter.SearchString.ToLower()));
             }
 
-            return Mapper.Map<IEnumerable<ICounty>>(await query.ToPagedListAsync(paging.PageNumber, paging.PageSize));
+            return Mapper.Map<IPagedList<ICounty>>(await query.ToPagedListAsync(paging.PageNumber, paging.PageSize));
         }
 
         /// <summary>
