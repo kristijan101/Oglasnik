@@ -1,51 +1,59 @@
-﻿(function () {
-    angular.module("app").factory("locationService", ["$http", "ROUTE", locationService]);
+﻿(function (angular) {
+    angular.module('app').factory('locationService', ['$http', 'API_URL', locationService]);
 
-    function locationService($http, route) {
-        var _locations = [];
+    function locationService($http, API_URL) {
+        'use strict';
+
+        var locationUrl = API_URL + '/location';
 
         return {
             add: function (location) {
-                return $http.post(route.LOCATION, location);
+                return $http.post(locationUrl, location);
             },
-            remove: function (id) {
-                return $http.delete(route.LOCATION + "?id=" + id);
-            },
-            get: function(){
-                return $http.get(route.LOCATION).then(
-                    function (response) {
-                        _locations = response.data;
-                        return _locations;
-                    }
+            
+            get: function(options){
+                return $http.get(locationUrl, 
+                    {
+                        params: 
+                        {
+                            q : options.query || null, 
+                            page : options.pageNum || 1, 
+                            size : options.pageSize || 20, 
+                            sort : options.orderBy || "name", 
+                            asc : options.ascending == null || !!options.ascending
+                        }
+                    }).then(
+                        function (response) {
+                            return response.data;
+                        }
                 );
             },
             getById: function (id) {
-                for (var i in _locations) {
-                    if (_locations[i].Id === id) {
-                        return _locations[i];
-                    }
-                }                
-                return $http.get(route.LOCATION + "?id=" + id).then(
+                return $http.get(locationUrl + '/' + id).then(
                     function (response) {
                         return response.data;
                     }
                 );
             },
-            getRange: function(searchString, page, size){
-                return $http.get(route.LOCATION + "?search=" + searchString + "&pageNum=" + page + "&pageSize=" + size);
+            remove: function (id) {
+                return $http.delete(locationUrl + '/' + id);
             },
-            //returns a comma seperated string of location names
-            toString: function(locations) {                
-                var temp = [];
- 
-                for (var i in locations) {
-                    temp.push(locations[i].Name);
+            //returns a delimiter seperated string of location names
+            toString: function(locations, delimiter) {
+                if(!angular.isArray(locations)){
+                    throw new TypeError('"locations" must be an array')
                 }
-                return temp.sort().join(", ");
+
+                delimiter = delimiter || ',';
+                var temp = locations.map(function(item){
+                    return item.Name;
+                });
+ 
+                return temp.sort().join(delimiter + ' ');
             },
             update: function (location) {
-                return $http.put(route.LOCATION, location);
+                return $http.put(locationUrl, location);
             }
         }
     }
-})();
+})(angular);

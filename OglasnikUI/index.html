@@ -21,7 +21,7 @@
                     </button>
                     <a class="navbar-brand" href="/">Oglasnik</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#/admin">Admin</a></li>
                     </ul>
@@ -36,7 +36,7 @@
     </div>
     <footer class="footer">
         <div class="container">
-            <p class="text-muted">&copy; 2015 Oglasnik</p>
+            <p class="text-muted">&copy; 2016 Oglasnik</p>
         </div>
     </footer>
 
@@ -51,6 +51,7 @@
 
     <!--aplikacija-->
     <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
     <script src="app/components/county/county.controller.js"></script>
     <script src="app/components/county/county-add.controller.js"></script>
     <script src="app/components/county/county-edit.controller.js"></script>
@@ -59,6 +60,8 @@
     <script src="app/components/location/location-add.controller.js"></script>
     <script src="app/components/location/location-edit.controller.js"></script>
     <script src="app/components/location/location.service.js"></script>
-    <script src="app/shared/constants/routes.js"></script>
+    <script src="app/shared/constants.js"></script>
+    <script src="app/shared/utilities/pager/pager.directive.js"></script>
+    <script src="app/shared/utilities/sorter/sorter.directive.js"></script>
 </body>
 </html>
